@@ -1,0 +1,7 @@
+C:\Users\ANISOLI\Documents\Pole 3d\3e année\programmation\Spé dev\DungeonProject\bin\Debug\DungeonProject.exe.config
+C:\Users\ANISOLI\Documents\Pole 3d\3e année\programmation\Spé dev\DungeonProject\bin\Debug\DungeonProject.exe
+C:\Users\ANISOLI\Documents\Pole 3d\3e année\programmation\Spé dev\DungeonProject\bin\Debug\DungeonProject.pdb
+C:\Users\ANISOLI\Documents\Pole 3d\3e année\programmation\Spé dev\DungeonProject\obj\Debug\DungeonProject.csprojAssemblyReference.cache
+C:\Users\ANISOLI\Documents\Pole 3d\3e année\programmation\Spé dev\DungeonProject\obj\Debug\DungeonProject.csproj.CoreCompileInputs.cache
+C:\Users\ANISOLI\Documents\Pole 3d\3e année\programmation\Spé dev\DungeonProject\obj\Debug\DungeonProject.exe
+C:\Users\ANISOLI\Documents\Pole 3d\3e année\programmation\Spé dev\DungeonProject\obj\Debug\DungeonProject.pdb
