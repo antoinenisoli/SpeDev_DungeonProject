@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 
 namespace DungeonProject
 {
-    class CoinsBag : Item
+    class PotionHeal : Potion
     {
-        public CoinsBag(string name, int value) : base(name, value)
+        public PotionHeal(string name, int value) : base(name, value)
         {
             this.Name = name;
             this.Value = value;
         }
 
-        public void GoldGain(Player player)
+        public void Heal(Character chara)
         {
             Console.WriteLine("");
-            Console.WriteLine(player.name + " a gagné " + Value + " piéces d'or !");
+            Console.WriteLine(chara.name + " boit une potion de soin !");
+            Console.WriteLine("Cela lui restaure " + Value + " pv !");
             Console.WriteLine("");
             Console.ReadKey();
-            
-            player.inventory.currentGold += Value;
+
+            chara.CurrentHealth += Value;
         }
     }
 }

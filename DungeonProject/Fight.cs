@@ -8,31 +8,72 @@ namespace DungeonProject
 {
     class Fight : Action
     {
-        Ennemy mob;
-        Player hero;
-
-        public Fight(Player hero, Ennemy mob)
+        public override void Execute(Player player, Room inRoom)
         {
-            this.hero = hero;
-            this.mob = mob;
+            bool choice = false;
+            while (!choice)
+            {
+                if (inRoom.ennemiesInRoom.Count == 0)
+                {
+                    Console.WriteLine("There is no ennemies in this room !");
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
+                }
+
+                Console.WriteLine("Which ennemy do you want to fight ?");
+                int step = 0;
+
+                foreach (Ennemy ennemy in inRoom.ennemiesInRoom)
+                {
+
+                    Console.WriteLine(step + " : " + ennemy.ShowCharacter());
+                    step++;
+                }
+
+                string answer = Console.ReadLine();
+                if (int.TryParse(answer, out int nombre))
+                {
+                    if (nombre >= 0 && nombre < inRoom.ennemiesInRoom.Count)
+                    {
+                        choice = true;
+                        Ennemy selected = inRoom.ennemiesInRoom[nombre];
+                        Battle(player, selected, inRoom);
+                    }
+                    else
+                    {
+                        WrongChoice();
+                    }
+                }
+                else
+                {
+                    WrongChoice();
+                }
+            }
         }
 
-        public void Battle()
+        public void Battle(Player hero, Ennemy mob, Room inRoom)
         {
+            Console.Clear();
+            Console.WriteLine("Un combat s'enclenche entre " + hero.Name + " et " + mob.Name + " !");
+            Console.ReadKey();
             Console.WriteLine(hero.ShowCharacter());
             Console.WriteLine(mob.ShowCharacter());
-
             hero.Attack(mob);
 
             if (mob.CurrentHealth <= 0)
             {
                 Console.WriteLine(mob.name + " est vaincu !");
                 Console.ReadKey();
+                hero.GainXp(mob);
+                inRoom.ennemiesInRoom.Remove(mob);
             }
-
-            Console.WriteLine(mob.name + " riposte !");
-            mob.Attack(hero);
-
+            else
+            {
+                Console.WriteLine(mob.name + " riposte !");
+                mob.Attack(hero);                
+            }
+            
             Console.Clear();
         }
     }

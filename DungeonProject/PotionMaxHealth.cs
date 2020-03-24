@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 
 namespace DungeonProject
 {
-    class CoinsBag : Item
+    class PotionMaxHealth : Potion
     {
-        public CoinsBag(string name, int value) : base(name, value)
+        public PotionMaxHealth(string name, int value) : base(name, value)
         {
             this.Name = name;
             this.Value = value;
         }
 
-        public void GoldGain(Player player)
+        public void AddMaxHealth(Character chara)
         {
             Console.WriteLine("");
-            Console.WriteLine(player.name + " a gagné " + Value + " piéces d'or !");
+            Console.WriteLine(chara.name + " boit une potion de vie !");
+            Console.WriteLine("Ses pv max augmentent de " + Value + " points !");
             Console.WriteLine("");
             Console.ReadKey();
-            
-            player.inventory.currentGold += Value;
+
+            chara.MaxHealth += Value;
         }
     }
 }

@@ -44,16 +44,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Action.cs" />
+    <Compile Include="Armor.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="CoinsBag.cs" />
     <Compile Include="Ennemy.cs" />
+    <Compile Include="Equipment.cs" />
     <Compile Include="Fight.cs" />
+    <Compile Include="GameData.cs" />
+    <Compile Include="InspectRoom.cs" />
     <Compile Include="Inventory.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="MoveToAnotherRoom.cs" />
+    <Compile Include="PickUpItem.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Potion.cs" />
+    <Compile Include="PotionHeal.cs" />
+    <Compile Include="PotionMaxHealth.cs" />
+    <Compile Include="PotionStrength.cs" />
+    <Compile Include="PotionTechnique.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomGenerators.cs" />
+    <Compile Include="Rest.cs" />
     <Compile Include="Room.cs" />
+    <Compile Include="Skills.cs" />
+    <Compile Include="Use.cs" />
+    <Compile Include="Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

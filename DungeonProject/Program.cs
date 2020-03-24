@@ -7,62 +7,57 @@ using System.Threading.Tasks;
 namespace DungeonProject
 {
     class Program
-    {
-        static Action action = new Action();
-
+    {        
         static void WrongChoice()
         {
             Console.WriteLine("");
-            Console.WriteLine("Il faut entrer un choix valide !");
+            Console.WriteLine("Your name must be valid !");
             Console.ReadLine();
             Console.Clear();
         }
 
         static void Main(string[] args)
         {
-            Player hero = new Player("Hero", 10, 10, 3, 0, 1);
-            Console.WriteLine(hero.ShowCharacter());
+            GameData.FillList();
+            NewRoom();
+        }
+
+        static void NewRoom() //create a new room to explore
+        {
+            Console.Clear();
+            Player hero = GameData.Hero;
             bool nextRoom = false;
+
+            int randomEnnemies = RandomGenerators.Instance.RandomNumber(0, 5);
+            int randomItems = RandomGenerators.Instance.RandomNumber(0, 5);
+            Room currentRoom = new Room(randomEnnemies, randomItems);
 
             while (!nextRoom)
             {
-                Room currentRoom = new Room(10, 10);                
-
                 Console.WriteLine("***************************************");
                 Console.WriteLine(hero.ShowCharacter());
+                hero.ShowInventory();
                 Console.WriteLine("");
 
-                Console.WriteLine("Vous voila dans une nouvelle piéce, que voulez vous faire ?");
-                Console.WriteLine("1 : Inspecter la piéce");
-                Console.WriteLine("2 : Se déplacer");
-                Console.WriteLine("3 : Attaquer un ennemi");
-                Console.WriteLine("4 : Ramasser un objet");
-                Console.WriteLine("5 : Se reposer dans un lit");
-                Console.WriteLine("6 : Utiliser un objet dans l'inventaire");
+                Console.WriteLine("You traveled into a new room, what do you do ?");
+                Console.WriteLine("0 : Inspect the room");
+                Console.WriteLine("1 : Move to another room");
+                Console.WriteLine("2 : Attack an ennemy");
+                Console.WriteLine("3 : Pick up an item");
+                Console.WriteLine("4 : Rest in a bed");
+                Console.WriteLine("5 : Use a item from the inventory");
 
                 string answer = Console.ReadLine();
                 if (int.TryParse(answer, out int nombre))
                 {
-                    switch (nombre)
-                    {
-                        case 1:
-                            currentRoom.InspectRoom();
-                            break;
-                        case 3:
-                            Ennemy mob = currentRoom.ennemiesInRoom[0];
-                            Fight fight = new Fight(hero, mob);
-                            fight.Battle();
-                            break;
-                        default:
-                            WrongChoice();
-                            break;
-                    }
+                    Action selectedAction = GameData.ActionsList[nombre];
+                    selectedAction.Execute(hero, currentRoom);
                 }
                 else
                 {
                     WrongChoice();
-                }                    
-            }           
-        }        
+                }
+            }
+        }              
     }
 }

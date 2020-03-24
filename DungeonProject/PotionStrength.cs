@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 
 namespace DungeonProject
 {
-    class CoinsBag : Item
+    class PotionStrength : Potion
     {
-        public CoinsBag(string name, int value) : base(name, value)
+        public PotionStrength(string name, int value) : base(name, value)
         {
             this.Name = name;
             this.Value = value;
         }
 
-        public void GoldGain(Player player)
+        public void AddForce(Character chara)
         {
             Console.WriteLine("");
-            Console.WriteLine(player.name + " a gagné " + Value + " piéces d'or !");
+            Console.WriteLine(chara.name + " boit une potion de force !");
+            Console.WriteLine("Sa force augmente de " + Value + " points !");
             Console.WriteLine("");
             Console.ReadKey();
-            
-            player.inventory.currentGold += Value;
+
+            chara.Strength += Value;
         }
     }
 }

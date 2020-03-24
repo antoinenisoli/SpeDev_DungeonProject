@@ -6,23 +6,6 @@ using System.Threading.Tasks;
 
 namespace DungeonProject
 {
-    class Item
-    {
-        public string name;
-        public int value;
-
-        public Item(string name, int value)
-        {
-            this.name = name;
-            this.value = value;
-        }
-
-        public string ShowItem()
-        {
-            return "     | Objet : " + name + " | Valeur : " + value + " | ";
-        }
-    }
-
     class Inventory
     {
         public List<Item> items = new List<Item>();

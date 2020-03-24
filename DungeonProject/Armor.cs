@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DungeonProject
 {
-    abstract class Potion : Item
+    class Armor : Equipment
     {
-        public Potion(string name, int value) : base(name,value)
+        public Armor(string name, int value) : base(name, value)
         {
             this.Name = name;
             this.Value = value;

@@ -9,6 +9,7 @@ namespace DungeonProject
     class Ennemy : Character
     {
         public int xpValue;
+
         public Ennemy(string name, int currentHealth, int maxHealth, int force, int xpValue) : base(name, currentHealth, maxHealth, force)
         {
             this.xpValue = xpValue;
@@ -17,7 +18,12 @@ namespace DungeonProject
         public override string ShowCharacter()
         {
             Console.WriteLine("");
-            return "[ " + Name + " : | PV = " + GetLife() + "/" + MaxHealth + " | Force = " + Force + " | " + "]";
+            return "[ " + Name + " : | PV = " + CurrentHealth + "/" + MaxHealth + " | Force = " + Strength + " | " + "]";
+        }
+
+        public void SetName(string newName)
+        {
+            Name = base.Name + newName;
         }
     }
 }

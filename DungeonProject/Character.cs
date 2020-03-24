@@ -13,7 +13,7 @@ namespace DungeonProject
         public string name;
         private int currentHealth;
         private int maxHealth;
-        private int force;
+        private int strength;
 
         public string Name
         {
@@ -24,11 +24,6 @@ namespace DungeonProject
 
             set
             {
-                if (string.IsNullOrEmpty(value))
-                {
-                    Console.WriteLine("Il faut un nom valide !");
-                }
-
                 name = value;
             }
         }
@@ -42,19 +37,18 @@ namespace DungeonProject
 
             set
             {
-                Console.WriteLine(value);
-
                 if (value <= 0)
                 {
                     value = 0;
-                    Console.WriteLine("mort");
                 }
 
                 if (value > MaxHealth)
                 {
                     value = MaxHealth;
-                    Console.WriteLine("max");
+                    
                 }
+
+                currentHealth = value;
             }
         }
 
@@ -65,28 +59,29 @@ namespace DungeonProject
             }
         }
 
-        public int Force { get => force;
+        public int Strength { get => strength;
             set
             {
-                if (force < 0)
+                if (strength < 0)
                 {
                     value = 0;
                 }
+
+                strength = value;
             }
         }
 
         public Character(string name, int currentHealth, int maxHealth, int force)
         {
             this.Name = name;
-            this.CurrentHealth = currentHealth;
             this.MaxHealth = maxHealth;
-            this.Force = force;
-            
+            this.CurrentHealth = currentHealth;
+            this.Strength = force;            
         }
 
-        public int GetLife()
+        public void IsDead()
         {
-            return currentHealth;
+
         }
 
         public abstract string ShowCharacter();
@@ -95,13 +90,13 @@ namespace DungeonProject
         {
             inventory.ShowInventory();
         }
-            
+        
         public void Attack(Character target)
         {
-            int damage = force;
+            int damage = strength;
             Console.WriteLine("");
             Console.WriteLine("////////////");
-            Console.WriteLine(name + " inflige " + damage + " points de dégâts à " + target.name);
+            Console.WriteLine(Name + " inflige " + damage + " points de dégâts à " + target.Name);
             Console.WriteLine("////////////");
             Console.WriteLine("");
             Console.ReadKey();

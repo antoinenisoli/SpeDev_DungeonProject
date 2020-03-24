@@ -9,6 +9,34 @@ namespace DungeonProject
     class Player : Character
     {
         public Random rdm = new Random();
+        int currentPt;
+
+        public int CurrentPT { get => currentPt;
+            set
+            {
+                if (value < 0)
+                {
+                    value = 0;
+                }
+
+                currentPt = value;
+            }
+        }
+
+        int maxPt;
+
+        public int MaxPt { get => maxPt;
+            set
+            {
+                if (value < 0)
+                {
+                    value = 0;
+                }
+
+                maxPt = value;
+            }
+        }
+
         int xp;
 
         public int XP { get => xp;
@@ -18,6 +46,8 @@ namespace DungeonProject
                 {
                     value = 0;
                 }
+
+                xp = value;
             }
         }
 
@@ -30,6 +60,8 @@ namespace DungeonProject
                 {
                     value = 0;
                 }
+
+                currentLevel = value;
             }
         }
 
@@ -42,11 +74,15 @@ namespace DungeonProject
                 {
                     value = 0;
                 }
+
+                nextLevel = value;
             }
         }
 
-        public Player(string name, int currentHealth, int maxHealth, int force, int xp, int currentLevel) : base(name, currentHealth, maxHealth, force)
+        public Player(string name, int currentHealth, int maxHealth, int currentPt, int maxPt, int force, int xp, int currentLevel) : base(name, currentHealth, maxHealth, force)
         {
+            this.MaxPt = maxPt;
+            this.CurrentPT = currentPt;
             this.XP = xp;
             this.CurrentLevel = currentLevel;
         }
@@ -57,7 +93,8 @@ namespace DungeonProject
 
             return 
             (
-            "[ " + Name + " : | PV = " + CurrentHealth + "/" + MaxHealth + " | Force = " + Force + " | Points d'exp = " + XP + " | Guerrier de niveau " + CurrentLevel + " ]"
+            "[ " + Name + " : | PV = " + CurrentHealth + "/" + MaxHealth + " | PT = " + CurrentPT + "/" + MaxPt + 
+            "\n| Force = " + Strength + " | Points d'exp = " + XP + "/" + NextLevel + " | Niveau " + CurrentLevel + " ]"
             );
         }
 
@@ -73,6 +110,8 @@ namespace DungeonProject
             {
                 LevelUp();
             }
+
+            Console.ReadKey();
         }
 
         public void LevelUp()
@@ -81,8 +120,9 @@ namespace DungeonProject
             Console.WriteLine("Félicitations ! " + name + " viens de gagner un niveau !");
             currentLevel++;
             xp = 0;
+            Console.ReadKey();
 
-            Console.WriteLine("Augmenter quelle stat ? " + " Pv maximum = " + MaxHealth + " Force = " + Force);
+            Console.WriteLine("Augmenter quelle stat ? " + " Pv maximum = " + MaxHealth + " Force = " + Strength);
             Console.WriteLine("A) Augmenter la force (Cette stat va gagner un bonus permanent de 1 à 4 points)");
             Console.WriteLine("B) Augmenter les pv max (Cette stat va gagner un bonus permanent de 10 à  points)");
             string entry = Console.ReadLine();
@@ -94,7 +134,7 @@ namespace DungeonProject
             else if (entry == "A" || entry == "a")
             {                
                 int random = rdm.Next(1, 5);
-                Force += random;
+                Strength += random;
 
                 Console.WriteLine("Vous avez gagné " + random + " points de force supplémentaires");
             }

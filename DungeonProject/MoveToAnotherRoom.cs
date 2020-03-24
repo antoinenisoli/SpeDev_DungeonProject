@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace DungeonProject
 {
-    abstract class Potion : Item
+    class MoveToAnotherRoom : Action
     {
-        public Potion(string name, int value) : base(name,value)
+        public override void Execute(Player player, Room inRoom)
         {
-            this.Name = name;
-            this.Value = value;
+            
         }
     }
 }
