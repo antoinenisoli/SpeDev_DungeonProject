@@ -33,7 +33,7 @@ namespace DungeonProject
             Console.WriteLine("");
             Console.ReadKey();
 
-            chara.force += value;
+            chara.Force += value;
         }
 
         public void AddMaxHealth(Character chara)
@@ -44,7 +44,7 @@ namespace DungeonProject
             Console.WriteLine("");
             Console.ReadKey();
 
-            chara.maxHealth += value;
+            chara.MaxHealth += value;
         }
     }
 }

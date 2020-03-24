@@ -9,15 +9,46 @@ namespace DungeonProject
     class Player : Character
     {
         public Random rdm = new Random();
-
         int xp;
+
+        public int XP { get => xp;
+            set
+            {
+                if (value < 0)
+                {
+                    value = 0;
+                }
+            }
+        }
+
         int currentLevel;
+
+        public int CurrentLevel { get => currentLevel;
+            set
+            {
+                if (value > 0)
+                {
+                    value = 0;
+                }
+            }
+        }
+
         int nextLevel = 100;
 
-        public Player(string name, int maxHealth, int force, int xp, int currentLevel) : base(name, maxHealth, force)
+        public int NextLevel { get => nextLevel;
+        set
+            {
+                if (value > 0)
+                {
+                    value = 0;
+                }
+            }
+        }
+
+        public Player(string name, int currentHealth, int maxHealth, int force, int xp, int currentLevel) : base(name, currentHealth, maxHealth, force)
         {
-            this.xp = xp;
-            this.currentLevel = currentLevel;
+            this.XP = xp;
+            this.CurrentLevel = currentLevel;
         }
 
         public override string ShowCharacter()
@@ -26,13 +57,8 @@ namespace DungeonProject
 
             return 
             (
-            "[ " + name + " : | PV = " + GetLife() + "/" + maxHealth + " | Force = " + force + " | Points d'exp = " + xp + " | Guerrier de niveau " + currentLevel + " ]"
+            "[ " + Name + " : | PV = " + CurrentHealth + "/" + MaxHealth + " | Force = " + Force + " | Points d'exp = " + XP + " | Guerrier de niveau " + CurrentLevel + " ]"
             );
-        }
-
-        public override void ShowInventory()
-        {
-            inventory.ShowInventory();
         }
 
         public void GainXp(Ennemy mob)
@@ -41,9 +67,9 @@ namespace DungeonProject
             Console.WriteLine("");
             Console.WriteLine(name + " gagne " + gain + " point d'exp !");
             Console.WriteLine("");
-            xp += gain;
+            XP += gain;
 
-            if (xp >= nextLevel)
+            if (XP >= NextLevel)
             {
                 LevelUp();
             }
@@ -56,7 +82,7 @@ namespace DungeonProject
             currentLevel++;
             xp = 0;
 
-            Console.WriteLine("Augmenter quelle stat ? " + " Pv maximum = " + maxHealth + " Force = " + force);
+            Console.WriteLine("Augmenter quelle stat ? " + " Pv maximum = " + MaxHealth + " Force = " + Force);
             Console.WriteLine("A) Augmenter la force (Cette stat va gagner un bonus permanent de 1 à 4 points)");
             Console.WriteLine("B) Augmenter les pv max (Cette stat va gagner un bonus permanent de 10 à  points)");
             string entry = Console.ReadLine();
@@ -68,14 +94,14 @@ namespace DungeonProject
             else if (entry == "A" || entry == "a")
             {                
                 int random = rdm.Next(1, 5);
-                force += random;
+                Force += random;
 
                 Console.WriteLine("Vous avez gagné " + random + " points de force supplémentaires");
             }
             else if (entry == "B" || entry == "b")
             {
                 int random = rdm.Next(10, 21);
-                maxHealth += random;
+                MaxHealth += random;
 
                 Console.WriteLine("Vous avez gagné " + random + " points de vie max supplémentaires");
             }

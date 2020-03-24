@@ -53,7 +53,7 @@ namespace DungeonProject
 
         public Ennemy MobGenerator() //génére un ennemi aléatoire
         {            
-            Ennemy mob = new Ennemy("Squelette 0", 5, 2, 10);
+            Ennemy mob = new Ennemy("Squelette 0", 5, 5, 2, 10);
             return mob;
         }
 

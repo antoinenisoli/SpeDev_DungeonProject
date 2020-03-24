@@ -20,7 +20,8 @@ namespace DungeonProject
 
         static void Main(string[] args)
         {
-            Player hero = new Player("Max", 10, 3, 0, 1);            
+            Player hero = new Player("Hero", 10, 10, 3, 0, 1);
+            Console.WriteLine(hero.ShowCharacter());
             bool nextRoom = false;
 
             while (!nextRoom)

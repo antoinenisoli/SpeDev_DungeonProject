@@ -6,12 +6,32 @@ using System.Threading.Tasks;
 
 namespace DungeonProject
 {
-    class Character
+    abstract class Character
     {
         public Inventory inventory = new Inventory();
 
         public string name;
         private int currentHealth;
+        private int maxHealth;
+        private int force;
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    Console.WriteLine("Il faut un nom valide !");
+                }
+
+                name = value;
+            }
+        }
 
         public int CurrentHealth
         {
@@ -22,28 +42,46 @@ namespace DungeonProject
 
             set
             {
+                Console.WriteLine(value);
+
                 if (value <= 0)
                 {
-                    currentHealth = 0;
+                    value = 0;
                     Console.WriteLine("mort");
                 }
 
-                if (value > maxHealth)
+                if (value > MaxHealth)
                 {
-                    value = maxHealth;
+                    value = MaxHealth;
+                    Console.WriteLine("max");
                 }
             }
         }
 
-        public int maxHealth;
-        public int force;
+        public int MaxHealth { get => maxHealth;
+            set
+            {
+                maxHealth = value;
+            }
+        }
 
-        public Character(string name, int maxHealth, int force)
+        public int Force { get => force;
+            set
+            {
+                if (force < 0)
+                {
+                    value = 0;
+                }
+            }
+        }
+
+        public Character(string name, int currentHealth, int maxHealth, int force)
         {
-            this.name = name;
-            this.maxHealth = maxHealth;
-            this.force = force;
-            currentHealth = this.maxHealth;
+            this.Name = name;
+            this.CurrentHealth = currentHealth;
+            this.MaxHealth = maxHealth;
+            this.Force = force;
+            
         }
 
         public int GetLife()
@@ -51,16 +89,13 @@ namespace DungeonProject
             return currentHealth;
         }
 
-        public virtual string ShowCharacter()
-        {
-            return null;
-        }
+        public abstract string ShowCharacter();
 
-        public virtual void ShowInventory()
+        public void ShowInventory()
         {
+            inventory.ShowInventory();
+        }
             
-        }
-
         public void Attack(Character target)
         {
             int damage = force;
@@ -70,7 +105,7 @@ namespace DungeonProject
             Console.WriteLine("////////////");
             Console.WriteLine("");
             Console.ReadKey();
-            target.currentHealth -= damage;
+            target.CurrentHealth -= damage;
         }
     }
 }
