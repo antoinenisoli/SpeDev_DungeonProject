@@ -24,7 +24,7 @@ namespace DungeonProject
 
             hero.Attack(mob);
 
-            if (mob.currentHealth <= 0)
+            if (mob.CurrentHealth <= 0)
             {
                 Console.WriteLine(mob.name + " est vaincu !");
                 Console.ReadKey();

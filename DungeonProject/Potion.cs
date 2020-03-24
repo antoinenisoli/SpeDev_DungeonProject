@@ -22,7 +22,7 @@ namespace DungeonProject
             Console.WriteLine("");
             Console.ReadKey();
             
-            chara.currentHealth += value;
+            chara.CurrentHealth += value;
         }
 
         public void AddForce(Character chara)

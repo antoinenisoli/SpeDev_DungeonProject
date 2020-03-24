@@ -11,7 +11,7 @@ namespace DungeonProject
         public Inventory inventory = new Inventory();
 
         public string name;
-        public int currentHealth;
+        private int currentHealth;
 
         public int CurrentHealth
         {
