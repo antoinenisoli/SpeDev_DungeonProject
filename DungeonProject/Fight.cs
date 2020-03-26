@@ -8,6 +8,11 @@ namespace DungeonProject
 {
     class Fight : Action
     {
+        public override string ToString()
+        {
+            return "Attack an ennemy";
+        }
+
         public override void Execute(Player player, Room inRoom)
         {
             bool choice = false;
@@ -63,14 +68,14 @@ namespace DungeonProject
 
             if (mob.CurrentHealth <= 0)
             {
-                Console.WriteLine(mob.name + " est vaincu !");
+                Console.WriteLine(mob.Name + " est vaincu !");
                 Console.ReadKey();
                 hero.GainXp(mob);
                 inRoom.ennemiesInRoom.Remove(mob);
             }
             else
             {
-                Console.WriteLine(mob.name + " riposte !");
+                Console.WriteLine(mob.Name + " riposte !");
                 mob.Attack(hero);                
             }
             

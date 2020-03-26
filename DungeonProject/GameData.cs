@@ -55,6 +55,14 @@ namespace DungeonProject
             ItemList.Add(new PotionStrength("Strength potion", 10)); //2
             ItemList.Add(new PotionTechnique("Technique potion", 10)); //3
             ItemList.Add(new CoinsBag("Coin bag", 10)); //4
+            ItemList.Add(new Weapon("Iron Sword", 10));
+            ItemList.Add(new Armor("Iron Armor", 10));
+        }
+
+        public static void WrongChoice()
+        {
+            Console.WriteLine("\nYour choice must be valid !\n ");
+            Console.ReadKey();
         }
     }
 }

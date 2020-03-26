@@ -14,14 +14,14 @@ namespace DungeonProject
             this.Value = value;
         }
 
-        public void GoldGain(Player player)
+        public override void Effect(Player player)
         {
-            Console.WriteLine("");
-            Console.WriteLine(player.name + " a gagné " + Value + " piéces d'or !");
+            base.Effect(player);
+            Console.WriteLine(player.Name + " won " + Value + " coins !");
             Console.WriteLine("");
             Console.ReadKey();
             
-            player.inventory.currentGold += Value;
+            player.inventory.CurrentGold += Value;
         }
     }
 }

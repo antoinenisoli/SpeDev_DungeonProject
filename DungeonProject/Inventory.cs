@@ -9,33 +9,56 @@ namespace DungeonProject
     class Inventory
     {
         public List<Item> items = new List<Item>();
-        public int currentGold;
+        public List<Item> currentEquipment = new List<Item>();
 
-        public Inventory()
-        {
-            
+        int currentGold;
+
+        public int CurrentGold { get => currentGold;
+            set
+            {
+                if (value < 0)
+                {
+                    value = 0;
+                }
+                
+                if (value > 1000)
+                {
+                    value = 1000;
+                }
+
+                currentGold = value;
+            }
         }
 
         public void ShowInventory()
         {           
             Console.WriteLine("");
-            Console.WriteLine("-- Inventaire : ");
+            Console.WriteLine("-- Your inventory : ");
             Console.WriteLine("[");
 
             if (items.Count > 0)
             {
                 foreach (Item item in items)
                 {
-                    Console.WriteLine(item.ShowItem());
+                    Console.WriteLine(item.ToString());
                 }
             }
-            else
+            
+            if (currentEquipment.Count > 0)
             {
-                Console.WriteLine("     | * Vide * ");
+                foreach (Item equipment in currentEquipment)
+                {
+                    Console.WriteLine(equipment.ToString());
+                }
+            }
+
+            if (currentEquipment.Count == 0 && items.Count == 0)
+            {
+                Console.WriteLine(" | * Empty * ");
             }
 
             Console.WriteLine("");
-            Console.WriteLine("     | Piéces d'or : " + currentGold);
+            Console.WriteLine(" | Gold coins : " + currentGold);
             Console.WriteLine("]");
             Console.WriteLine("");
         }

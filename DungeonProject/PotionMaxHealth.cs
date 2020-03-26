@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DungeonProject
 {
-    class PotionMaxHealth : Potion
+    class PotionMaxHealth : Item
     {
         public PotionMaxHealth(string name, int value) : base(name, value)
         {
@@ -14,15 +14,14 @@ namespace DungeonProject
             this.Value = value;
         }
 
-        public void AddMaxHealth(Character chara)
+        public override void Effect(Player player)
         {
-            Console.WriteLine("");
-            Console.WriteLine(chara.name + " boit une potion de vie !");
-            Console.WriteLine("Ses pv max augmentent de " + Value + " points !");
+            base.Effect(player);
+            Console.WriteLine("His maximum Health points are increased by " + Value + " points !");
             Console.WriteLine("");
             Console.ReadKey();
 
-            chara.MaxHealth += Value;
+            player.MaxHealth += Value;
         }
     }
 }

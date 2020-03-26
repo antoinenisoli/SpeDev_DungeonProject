@@ -7,15 +7,7 @@ using System.Threading.Tasks;
 namespace DungeonProject
 {
     class Program
-    {        
-        static void WrongChoice()
-        {
-            Console.WriteLine("");
-            Console.WriteLine("Your name must be valid !");
-            Console.ReadLine();
-            Console.Clear();
-        }
-
+    {                
         static void Main(string[] args)
         {
             GameData.FillList();
@@ -34,6 +26,7 @@ namespace DungeonProject
 
             while (!nextRoom)
             {
+                Console.Clear();
                 Console.WriteLine("***************************************");
                 Console.WriteLine(hero.ShowCharacter());
                 hero.ShowInventory();
@@ -48,14 +41,14 @@ namespace DungeonProject
                 Console.WriteLine("5 : Use a item from the inventory");
 
                 string answer = Console.ReadLine();
-                if (int.TryParse(answer, out int nombre))
+                if (int.TryParse(answer, out int nombre) && nombre >= 0 && nombre <= GameData.ActionsList.Count)
                 {
                     Action selectedAction = GameData.ActionsList[nombre];
                     selectedAction.Execute(hero, currentRoom);
                 }
                 else
                 {
-                    WrongChoice();
+                    GameData.WrongChoice();
                 }
             }
         }              

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DungeonProject
 {
-    class PotionHeal : Potion
+    class PotionHeal : Item
     {
         public PotionHeal(string name, int value) : base(name, value)
         {
@@ -14,15 +14,14 @@ namespace DungeonProject
             this.Value = value;
         }
 
-        public void Heal(Character chara)
+        public override void Effect(Player player)
         {
-            Console.WriteLine("");
-            Console.WriteLine(chara.name + " boit une potion de soin !");
-            Console.WriteLine("Cela lui restaure " + Value + " pv !");
+            base.Effect(player);
+            Console.WriteLine("It heals him by " + Value + " pv !");
             Console.WriteLine("");
             Console.ReadKey();
 
-            chara.CurrentHealth += Value;
+            player.CurrentHealth += Value;
         }
     }
 }

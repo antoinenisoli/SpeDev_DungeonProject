@@ -19,6 +19,11 @@ namespace DungeonProject
                     value = 0;
                 }
 
+                if (value > MaxPt)
+                {
+                    value = MaxPt;
+                }
+
                 currentPt = value;
             }
         }
@@ -102,7 +107,7 @@ namespace DungeonProject
         {
             int gain = mob.xpValue;
             Console.WriteLine("");
-            Console.WriteLine(name + " gagne " + gain + " point d'exp !");
+            Console.WriteLine(Name + " gagne " + gain + " point d'exp !");
             Console.WriteLine("");
             XP += gain;
 
@@ -117,7 +122,7 @@ namespace DungeonProject
         public void LevelUp()
         {
             Console.WriteLine("");
-            Console.WriteLine("Félicitations ! " + name + " viens de gagner un niveau !");
+            Console.WriteLine("Félicitations ! " + Name + " viens de gagner un niveau !");
             currentLevel++;
             xp = 0;
             Console.ReadKey();

@@ -10,7 +10,7 @@ namespace DungeonProject
     {
         public Inventory inventory = new Inventory();
 
-        public string name;
+        private string name;
         private int currentHealth;
         private int maxHealth;
         private int strength;

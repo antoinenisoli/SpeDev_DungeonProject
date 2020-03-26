@@ -12,5 +12,10 @@ namespace DungeonProject
         {
             
         }
+
+        public override string ToString()
+        {
+            return "Move to another room";
+        }
     }
 }

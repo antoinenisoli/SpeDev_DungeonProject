@@ -12,9 +12,14 @@ namespace DungeonProject
         {
             Console.WriteLine("");
 
+            if (inRoom.Bed)
+            {
+                Console.WriteLine("There's a bed hidden in this room...\n");
+            }
+
             if (inRoom.ennemiesInRoom.Count > 0)
             {
-                Console.WriteLine("Cette piéce semble contenir ces ennemis :");
+                Console.WriteLine("This room contains these ennemies :");
 
                 foreach (Ennemy mob in inRoom.ennemiesInRoom)
                 {
@@ -23,26 +28,31 @@ namespace DungeonProject
             }
             else
             {
-                Console.WriteLine("Il n'y a pas d'ennemis.");
+                Console.WriteLine("There is no ennemies here.");
             }
 
             if (inRoom.itemsInRoom.Count > 0)
             {                
-                Console.WriteLine("\nCette piéce semble contenir ces objets :");
+                Console.WriteLine("\nThis room contains these items :");
 
                 foreach (Item item in inRoom.itemsInRoom)
                 {
-                    Console.WriteLine(item.ShowItem());
+                    Console.WriteLine(item.ToString());
                 }
             }
             else
             {
-                Console.WriteLine("Il n'y a pas d'objets");
+                Console.WriteLine("There is no items here.");
             }            
 
             Console.WriteLine("");
             Console.ReadLine();
             Console.Clear();
+        }
+
+        public override string ToString()
+        {
+            return "Inspect the room";
         }
     }
 }

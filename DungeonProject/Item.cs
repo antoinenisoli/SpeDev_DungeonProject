@@ -22,9 +22,15 @@ namespace DungeonProject
             this.Value = value;
         }
 
-        public string ShowItem()
+        public override string ToString()
         {
-            return "     | Objet : " + name + " | Valeur : " + value + " | ";
+            return " | Item : " + name + " | Value : " + value + " | ";
+        }
+
+        public virtual void Effect(Player player)
+        {
+            Console.WriteLine("");
+            Console.WriteLine(player.Name + " use a " + Name + " !");
         }
     }
 }

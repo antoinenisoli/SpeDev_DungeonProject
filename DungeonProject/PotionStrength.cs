@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DungeonProject
 {
-    class PotionStrength : Potion
+    class PotionStrength : Item
     {
         public PotionStrength(string name, int value) : base(name, value)
         {
@@ -14,15 +14,14 @@ namespace DungeonProject
             this.Value = value;
         }
 
-        public void AddForce(Character chara)
+        public override void Effect(Player player)
         {
-            Console.WriteLine("");
-            Console.WriteLine(chara.name + " boit une potion de force !");
-            Console.WriteLine("Sa force augmente de " + Value + " points !");
+            base.Effect(player);
+            Console.WriteLine("His strength is increased by " + Value + " points !");
             Console.WriteLine("");
             Console.ReadKey();
 
-            chara.Strength += Value;
+            player.Strength += Value;
         }
     }
 }
