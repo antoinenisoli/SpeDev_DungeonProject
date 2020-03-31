@@ -17,12 +17,5 @@ namespace DungeonProject
         {
 
         }
-
-        public void WrongChoice()
-        {
-            Console.WriteLine("");
-            Console.WriteLine("Your choice must be valid !");
-            Console.ReadLine();
-        }
     }    
 }

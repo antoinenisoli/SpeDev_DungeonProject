@@ -25,7 +25,6 @@ namespace DungeonProject
                 {
                     player.inventory.items.Add(pickedItem);
                 }
-
                 
                 Console.WriteLine(player.Name + " add the " + pickedItem.Name + " to his inventory.");
             }

@@ -28,7 +28,7 @@ namespace DungeonProject
             GenerateBed();
         }        
 
-        void GenerateBed()
+        void GenerateBed() //is ther a bed in the room ?
         {
             int randomNumber = RandomGenerators.Instance.RandomNumber(0, 10);
 

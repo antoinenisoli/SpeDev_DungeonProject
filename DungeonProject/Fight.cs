@@ -47,12 +47,12 @@ namespace DungeonProject
                     }
                     else
                     {
-                        WrongChoice();
+                        GameData.WrongChoice();
                     }
                 }
                 else
                 {
-                    WrongChoice();
+                    GameData.WrongChoice();
                 }
             }
         }
