@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace DungeonProject
 {
-    class MoveToAnotherRoom : Action
+    class Armor : Equipment
     {
-        public override void Execute(Player player, Room inRoom)
+        public Armor(string name, int value) : base(name, value)
         {
-            
+            this.Name = name;
+            this.Value = value;
         }
 
         public override string ToString()
         {
-            return "Move to another room";
+            return " [Armor : " + base.ToString();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace DungeonProject
             if (player.inventory.items.Count > 0)
             {
                 Item pickedItem = Menu.PickElementFromList<Item>(player.inventory.items, "Your inventory :");
-                inRoom.itemsInRoom.Remove(pickedItem);
+                player.inventory.items.Remove(pickedItem);
                 pickedItem.Effect(player);
             }
             else
@@ -23,7 +23,6 @@ namespace DungeonProject
                 Console.WriteLine("There is no items to use...");
             }
 
-            Console.ReadKey();
             Console.Clear();
         }
 

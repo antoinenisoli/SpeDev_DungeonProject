@@ -15,7 +15,7 @@ namespace DungeonProject
 
         public override void Execute(Player player, Room inRoom)
         {
-            bool choice = false;
+            /*bool choice = false;
             while (!choice)
             {
                 if (inRoom.ennemiesInRoom.Count == 0)
@@ -31,7 +31,6 @@ namespace DungeonProject
 
                 foreach (Ennemy ennemy in inRoom.ennemiesInRoom)
                 {
-
                     Console.WriteLine(step + " : " + ennemy.ShowCharacter());
                     step++;
                 }
@@ -54,6 +53,18 @@ namespace DungeonProject
                 {
                     GameData.WrongChoice();
                 }
+            }*/
+
+            if (inRoom.ennemiesInRoom.Count == 0)
+            {
+                Console.WriteLine("There is no ennemies in this room !");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else
+            {
+                Ennemy pickedEnnemy = Menu.PickElementFromList<Ennemy>(inRoom.ennemiesInRoom, " Which ennemy do you want to fight ? ");
+                Battle(player, pickedEnnemy, inRoom);
             }
         }
 
@@ -67,10 +78,9 @@ namespace DungeonProject
             hero.Attack(mob);
 
             if (mob.CurrentHealth <= 0)
-            {
-                Console.WriteLine(mob.Name + " est vaincu !");
-                Console.ReadKey();
-                hero.GainXp(mob);
+            {                
+                hero.GainXp(mob.xpValue);
+                hero.inventory.GainGold(mob.goldValue);
                 inRoom.ennemiesInRoom.Remove(mob);
             }
             else

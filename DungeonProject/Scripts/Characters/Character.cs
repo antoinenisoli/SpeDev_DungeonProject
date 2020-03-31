@@ -40,6 +40,7 @@ namespace DungeonProject
                 if (value <= 0)
                 {
                     value = 0;
+                    IsDead();
                 }
 
                 if (value > MaxHealth)
@@ -79,27 +80,31 @@ namespace DungeonProject
             this.Strength = force;            
         }
 
-        public void IsDead()
+        public virtual void IsDead()
         {
 
         }
 
         public abstract string ShowCharacter();
 
-        public void ShowInventory()
+        public virtual void ShowInventory()
         {
             inventory.ShowInventory();
         }
         
         public void Attack(Character target)
         {
-            int damage = strength;
+            double random = RandomGenerators.Instance.RandomDouble(0, 0.1); //10% = 0.1; //1% = 0.01;
+            int damage = (inventory.CurrentSword.Value + strength) - target.inventory.CurrentArmor.Value;
+            int total = damage + RandomGenerators.CalculatePercentage(damage, random);
+
             Console.WriteLine("");
             Console.WriteLine("////////////");
-            Console.WriteLine(Name + " inflige " + damage + " points de dégâts à " + target.Name);
+            Console.WriteLine(Name + " inflige " + total + " points de dégâts à " + target.Name);
             Console.WriteLine("////////////");
             Console.WriteLine("");
             Console.ReadKey();
+
             target.CurrentHealth -= damage;
         }
     }

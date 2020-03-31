@@ -13,11 +13,17 @@ namespace DungeonProject
             return "Rest in a bed";
         }
 
-        public override void Execute(Player player, Room inRoom)
+        public override void Execute(Player player, Room inRoom) //heal the player but destroy the bed after use
         {
+            if (inRoom.ennemiesInRoom.Count > 0) //you can't sleep in a room which contains a ennemy
+            {
+                Console.WriteLine("You can't sleep here, there are enemies nearby !");
+                Console.ReadKey();
+                return;
+            }
+
             if (inRoom.Bed)
             {
-
                 Console.WriteLine("There's a bed in the room !");
                 Console.WriteLine(player.Name + " go to sleep in the bed.");
                 Console.ReadKey();
@@ -30,6 +36,9 @@ namespace DungeonProject
 
                 Console.WriteLine(player.Name + " has recovered some health !");
                 Console.ReadKey();
+                Console.WriteLine("But the bed is fading away !");
+                Console.ReadKey();
+                inRoom.Bed = false;
                 player.CurrentHealth += 30;
             }
             else

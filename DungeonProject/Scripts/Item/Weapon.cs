@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace DungeonProject
 {
-    class Armor : Equipment
+    class Weapon : Equipment
     {
-        public Armor(string name, int value) : base(name, value)
+        public Weapon(string name, int value) : base(name, value)
         {
             this.Name = name;
             this.Value = value;
+        }
+
+        public override string ToString()
+        {
+            return " [Weapon : " + base.ToString();
         }
     }
 }

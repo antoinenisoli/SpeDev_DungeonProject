@@ -10,11 +10,12 @@ namespace DungeonProject
     {
         public override void Execute(Player player, Room inRoom)
         {
-            Console.WriteLine("");
+            Console.Clear();
 
             if (inRoom.Bed)
             {
                 Console.WriteLine("There's a bed hidden in this room...\n");
+                Console.ReadKey();
             }
 
             if (inRoom.ennemiesInRoom.Count > 0)
@@ -23,12 +24,16 @@ namespace DungeonProject
 
                 foreach (Ennemy mob in inRoom.ennemiesInRoom)
                 {
-                    Console.WriteLine(mob.ShowCharacter());
+                    Console.WriteLine("");
+                    Console.WriteLine(mob.ToString());
                 }
+
+                Console.ReadKey();
             }
             else
             {
                 Console.WriteLine("There is no ennemies here.");
+                Console.ReadKey();
             }
 
             if (inRoom.itemsInRoom.Count > 0)
@@ -39,14 +44,16 @@ namespace DungeonProject
                 {
                     Console.WriteLine(item.ToString());
                 }
+
+                Console.ReadKey();
             }
             else
             {
                 Console.WriteLine("There is no items here.");
+                Console.ReadKey();
             }            
 
             Console.WriteLine("");
-            Console.ReadLine();
             Console.Clear();
         }
 

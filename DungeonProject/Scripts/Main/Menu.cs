@@ -33,8 +33,7 @@ namespace DungeonProject
 
             while (userChoice < 1 || userChoice > choice.Count)
             {
-                Console.WriteLine("Choose a item between (1 - " + choice.Count + ")");
-                //userChoice = int.Parse(Console.ReadLine());
+                Console.WriteLine("Choose between (1 - " + choice.Count + ")");
                 string s = Console.ReadLine();
                 if (int.TryParse(s, out userChoice) && userChoice >= 0 && userChoice <= choice.Count)
                 {

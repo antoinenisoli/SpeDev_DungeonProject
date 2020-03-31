@@ -26,7 +26,7 @@ namespace DungeonProject
         static List<Action> actionsList = new List<Action>();
         static List<Item> itemList = new List<Item>();
         static List<Ennemy> ennemiesList = new List<Ennemy>();
-        static Player hero = new Player("Hero", 100, 100, 10, 10, 5, 0, 1);
+        static Player hero = new Player("Hero", 100, 100, 50, 50, 20, 0, 1);
 
         public static Player Hero { get => hero; set => hero = value; }
         public static List<Action> ActionsList { get => actionsList; set => actionsList = value; }
@@ -44,19 +44,25 @@ namespace DungeonProject
             ActionsList.Add(new Rest()); //4
             ActionsList.Add(new Use()); //5
 
-            EnnemiesList.Add(new Ennemy("Goblin", 13, 13, 5, 10)); //0
-            EnnemiesList.Add(new Ennemy("Skeleton", 20, 20, 7, 25)); //1
-            EnnemiesList.Add(new Ennemy("Ghost", 16, 16, 10, 30)); //2
-            EnnemiesList.Add(new Ennemy("Minotaure", 40, 40, 15, 90)); //3
-            EnnemiesList.Add(new Ennemy("Warlock", 32, 32, 10, 50)); //4
+            EnnemiesList.Add(new Ennemy("Goblin", 13, 13, 5, 10, RandomGenerators.Instance.RandomNumber(0,5))); //0
+            EnnemiesList.Add(new Ennemy("Skeleton", 20, 20, 7, 25, RandomGenerators.Instance.RandomNumber(0, 10))); //1
+            EnnemiesList.Add(new Ennemy("Ghost", 16, 16, 10, 30, 0)); //2
+            EnnemiesList.Add(new Ennemy("Minotaure", 40, 40, 15, 90, RandomGenerators.Instance.RandomNumber(0, 100))); //3
+            EnnemiesList.Add(new Ennemy("Warlock", 32, 32, 10, 50, RandomGenerators.Instance.RandomNumber(0, 50))); //4
 
             ItemList.Add(new PotionHeal("Healing potion", 15)); //0
             ItemList.Add(new PotionMaxHealth("Health potion", 10)); //1
             ItemList.Add(new PotionStrength("Strength potion", 10)); //2
             ItemList.Add(new PotionTechnique("Technique potion", 10)); //3
             ItemList.Add(new CoinsBag("Coin bag", 10)); //4
-            ItemList.Add(new Weapon("Iron Sword", 10));
-            ItemList.Add(new Armor("Iron Armor", 10));
+
+            ItemList.Add(new Weapon("Stone Sword", 7)); //5 
+            ItemList.Add(new Weapon("Steel Sword", 15)); //6 
+            ItemList.Add(new Weapon("Diamond Sword", 25)); //7
+
+            ItemList.Add(new Armor("Light Armor", 5)); //8
+            ItemList.Add(new Armor("Heavy Armor", 15)); //9
+            ItemList.Add(new Armor("Obsidian Armor", 30)); //10
         }
 
         public static void WrongChoice()

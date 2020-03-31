@@ -31,15 +31,29 @@ namespace DungeonProject
             return result;
         }
 
+        public double RandomDouble(double min, double max)
+        {
+            double result = rdm.NextDouble() * (max - min) + min;
+
+            return result;
+        }
+
+        public static int CalculatePercentage(int value, double percentage)
+        {
+            int multiply = (int)(value * Math.Round(percentage, 2));
+            return multiply;
+        }
+
         public static Ennemy MobGenerator() //génére un ennemi aléatoire
         {
-            Ennemy mob = GameData.EnnemiesList[Instance.RandomNumber(0,5)];
+            Ennemy mob = GameData.EnnemiesList[Instance.RandomNumber(0,GameData.EnnemiesList.Count)];
             return mob;
         }
 
         public static Item ItemGenerator() //génére un objet aléatoire
         {
-            Item item = GameData.ItemList[Instance.RandomNumber(0,5)];
+            //Item item = GameData.ItemList[Instance.RandomNumber(0, GameData.EnnemiesList.Count)];
+            Item item = GameData.ItemList[Instance.RandomNumber(5, 11)];
             return item;
         }
     }

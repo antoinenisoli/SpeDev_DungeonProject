@@ -52,6 +52,12 @@ namespace DungeonProject
                     value = 0;
                 }
 
+                if (value >= NextLevel)
+                {
+                    LevelUp();
+                    value = 0;
+                }
+
                 xp = value;
             }
         }
@@ -61,7 +67,7 @@ namespace DungeonProject
         public int CurrentLevel { get => currentLevel;
             set
             {
-                if (value > 0)
+                if (value < 0)
                 {
                     value = 0;
                 }
@@ -75,7 +81,7 @@ namespace DungeonProject
         public int NextLevel { get => nextLevel;
         set
             {
-                if (value > 0)
+                if (value < 0)
                 {
                     value = 0;
                 }
@@ -84,7 +90,7 @@ namespace DungeonProject
             }
         }
 
-        public Player(string name, int currentHealth, int maxHealth, int currentPt, int maxPt, int force, int xp, int currentLevel) : base(name, currentHealth, maxHealth, force)
+        public Player(string name, int currentHealth, int maxHealth, int currentPt, int maxPt, int force, int xp, int currentLevel) : base(name, currentHealth, maxHealth, force) //build the player
         {
             this.MaxPt = maxPt;
             this.CurrentPT = currentPt;
@@ -92,64 +98,57 @@ namespace DungeonProject
             this.CurrentLevel = currentLevel;
         }
 
-        public override string ShowCharacter()
+        public override void IsDead() //end the game if the player is dead
+        {
+            Console.WriteLine("");
+            Console.WriteLine(Name + " is dead !");
+            Console.WriteLine("GAME OVER");
+            Console.WriteLine("");
+            Console.ReadKey();
+            Environment.Exit(0);
+        }
+
+        public override string ShowCharacter() //show the player's attributes
         {
             Console.WriteLine("");
 
             return 
             (
             "[ " + Name + " : | PV = " + CurrentHealth + "/" + MaxHealth + " | PT = " + CurrentPT + "/" + MaxPt + 
-            "\n| Force = " + Strength + " | Points d'exp = " + XP + "/" + NextLevel + " | Niveau " + CurrentLevel + " ]"
+            "\n| Strength = " + Strength + " | XP = " + XP + "/" + NextLevel + " | Level " + CurrentLevel + " ]"
             );
         }
 
-        public void GainXp(Ennemy mob)
+        public void GainXp(int gain) //the player win some xp
         {
-            int gain = mob.xpValue;
             Console.WriteLine("");
-            Console.WriteLine(Name + " gagne " + gain + " point d'exp !");
+            Console.WriteLine(Name + " has won " + gain + " xp !");
             Console.WriteLine("");
             XP += gain;
 
-            if (XP >= NextLevel)
-            {
-                LevelUp();
-            }
-
             Console.ReadKey();
+        }        
+
+        void FullRestore()
+        {
+            CurrentPT = MaxPt;
+            CurrentHealth = MaxHealth;
         }
 
-        public void LevelUp()
+        public void LevelUp() //the player reaches a new level, his attributes are increased by between 1 and 10%
         {
             Console.WriteLine("");
-            Console.WriteLine("Félicitations ! " + Name + " viens de gagner un niveau !");
-            currentLevel++;
-            xp = 0;
+            Console.WriteLine("Congratulations ! " + Name + " has reach a new level !");
             Console.ReadKey();
-
-            Console.WriteLine("Augmenter quelle stat ? " + " Pv maximum = " + MaxHealth + " Force = " + Strength);
-            Console.WriteLine("A) Augmenter la force (Cette stat va gagner un bonus permanent de 1 à 4 points)");
-            Console.WriteLine("B) Augmenter les pv max (Cette stat va gagner un bonus permanent de 10 à  points)");
-            string entry = Console.ReadLine();
-
-            if (string.IsNullOrEmpty(entry))
-            {
-                Console.WriteLine("Entrez un choix valide.");
-            }
-            else if (entry == "A" || entry == "a")
-            {                
-                int random = rdm.Next(1, 5);
-                Strength += random;
-
-                Console.WriteLine("Vous avez gagné " + random + " points de force supplémentaires");
-            }
-            else if (entry == "B" || entry == "b")
-            {
-                int random = rdm.Next(10, 21);
-                MaxHealth += random;
-
-                Console.WriteLine("Vous avez gagné " + random + " points de vie max supplémentaires");
-            }
-        }
+            CurrentLevel++;
+            NextLevel += 100; //increase the new max level            
+            
+            double random = RandomGenerators.Instance.RandomDouble(0.01, 0.1); //10% = 0.1; //1% = 0.01;
+            MaxHealth += RandomGenerators.CalculatePercentage(MaxHealth,random);
+            MaxPt += RandomGenerators.CalculatePercentage(MaxPt, random);
+            Strength += RandomGenerators.CalculatePercentage(Strength, random);
+            FullRestore();
+            Console.WriteLine("His stats are increased by " + Math.Round(random, 2) * 100 + "% !");
+        }        
     }
 }
