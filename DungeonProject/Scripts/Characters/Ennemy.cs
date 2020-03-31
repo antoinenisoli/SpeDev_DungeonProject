@@ -11,7 +11,7 @@ namespace DungeonProject
         public int xpValue;
         public int goldValue;
 
-        public Ennemy(string name, int currentHealth, int maxHealth, int force, int xpValue, int goldValue) : base(name, currentHealth, maxHealth, force)
+        public Ennemy(string name, int currentHealth, int maxHealth, int strength, int xpValue, int goldValue) : base(name, currentHealth, maxHealth, strength)
         {
             this.xpValue = xpValue;
             this.goldValue = goldValue;
@@ -41,7 +41,7 @@ namespace DungeonProject
 
         public override string ToString()
         {
-            ShowInventory();
+            
             return ShowCharacter();
         }
     }

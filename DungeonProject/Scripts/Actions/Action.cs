@@ -8,11 +8,6 @@ namespace DungeonProject
 {
     class Action
     {
-        public Action()
-        {
-            
-        }
-
         public virtual void Execute(Player player, Room inRoom)
         {
 

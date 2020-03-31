@@ -72,12 +72,12 @@ namespace DungeonProject
             }
         }
 
-        public Character(string name, int currentHealth, int maxHealth, int force)
+        public Character(string name, int currentHealth, int maxHealth, int strength)
         {
             this.Name = name;
             this.MaxHealth = maxHealth;
             this.CurrentHealth = currentHealth;
-            this.Strength = force;            
+            this.Strength = strength;            
         }
 
         public virtual void IsDead()
@@ -92,7 +92,7 @@ namespace DungeonProject
             inventory.ShowInventory();
         }
         
-        public void Attack(Character target)
+        public void Attack(Character target) //attack the target character
         {
             double random = RandomGenerators.Instance.RandomDouble(0, 0.1); //10% = 0.1; //1% = 0.01;
             int damage = (inventory.CurrentSword.Value + strength) - target.inventory.CurrentArmor.Value;
@@ -100,12 +100,20 @@ namespace DungeonProject
 
             Console.WriteLine("");
             Console.WriteLine("////////////");
-            Console.WriteLine(Name + " inflige " + total + " points de dégâts à " + target.Name);
+
+            if (total <= 0)
+            {
+                Console.WriteLine(target.Name + " has completely absorbed the damages !");
+            }
+            else
+            {               
+                Console.WriteLine(Name + " inflige " + total + " points de dégâts à " + target.Name);                
+                target.CurrentHealth -= damage;
+            }
+
             Console.WriteLine("////////////");
             Console.WriteLine("");
             Console.ReadKey();
-
-            target.CurrentHealth -= damage;
         }
     }
 }

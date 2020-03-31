@@ -8,7 +8,7 @@ namespace DungeonProject
 {
     class MoveToAnotherRoom : Action
     {
-        public override void Execute(Player player, Room inRoom)
+        public override void Execute(Player player, Room inRoom) //generate a new room and ask the player to chose an action
         {
             Console.Clear();
             Console.WriteLine("You arrived in a new room...");

@@ -12,23 +12,24 @@ namespace DungeonProject
         {
             Console.Clear();
 
-            if (inRoom.Bed)
+            if (inRoom.Bed) //show the bed in the room
             {
                 Console.WriteLine("There's a bed hidden in this room...\n");
                 Console.ReadKey();
             }
 
-            if (inRoom.ennemiesInRoom.Count > 0)
+            if (inRoom.ennemiesInRoom.Count > 0) //show the ennemies in the room
             {
                 Console.WriteLine("This room contains these ennemies :");
 
                 foreach (Ennemy mob in inRoom.ennemiesInRoom)
                 {
                     Console.WriteLine("");
+                    Console.WriteLine("");
                     Console.WriteLine(mob.ToString());
+                    mob.ShowInventory();
+                    Console.ReadKey();
                 }
-
-                Console.ReadKey();
             }
             else
             {
@@ -36,8 +37,9 @@ namespace DungeonProject
                 Console.ReadKey();
             }
 
-            if (inRoom.itemsInRoom.Count > 0)
-            {                
+            if (inRoom.itemsInRoom.Count > 0) //show the items in the room
+            {
+                Console.WriteLine("");
                 Console.WriteLine("\nThis room contains these items :");
 
                 foreach (Item item in inRoom.itemsInRoom)

@@ -14,47 +14,7 @@ namespace DungeonProject
         }
 
         public override void Execute(Player player, Room inRoom)
-        {
-            /*bool choice = false;
-            while (!choice)
-            {
-                if (inRoom.ennemiesInRoom.Count == 0)
-                {
-                    Console.WriteLine("There is no ennemies in this room !");
-                    Console.ReadKey();
-                    Console.Clear();
-                    break;
-                }
-
-                Console.WriteLine("Which ennemy do you want to fight ?");
-                int step = 0;
-
-                foreach (Ennemy ennemy in inRoom.ennemiesInRoom)
-                {
-                    Console.WriteLine(step + " : " + ennemy.ShowCharacter());
-                    step++;
-                }
-
-                string answer = Console.ReadLine();
-                if (int.TryParse(answer, out int nombre))
-                {
-                    if (nombre >= 0 && nombre < inRoom.ennemiesInRoom.Count)
-                    {
-                        choice = true;
-                        Ennemy selected = inRoom.ennemiesInRoom[nombre];
-                        Battle(player, selected, inRoom);
-                    }
-                    else
-                    {
-                        GameData.WrongChoice();
-                    }
-                }
-                else
-                {
-                    GameData.WrongChoice();
-                }
-            }*/
-
+        {            
             if (inRoom.ennemiesInRoom.Count == 0)
             {
                 Console.WriteLine("There is no ennemies in this room !");
@@ -68,7 +28,7 @@ namespace DungeonProject
             }
         }
 
-        public void Battle(Player hero, Ennemy mob, Room inRoom)
+        public void Battle(Player hero, Ennemy mob, Room inRoom) //fight between a character and his opponent
         {
             Console.Clear();
             Console.WriteLine("Un combat s'enclenche entre " + hero.Name + " et " + mob.Name + " !");
@@ -82,6 +42,7 @@ namespace DungeonProject
                 hero.GainXp(mob.xpValue);
                 hero.inventory.GainGold(mob.goldValue);
                 inRoom.ennemiesInRoom.Remove(mob);
+                mob.inventory.GiveLoot(hero);
             }
             else
             {

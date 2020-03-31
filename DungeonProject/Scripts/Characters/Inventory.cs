@@ -35,7 +35,7 @@ namespace DungeonProject
             }
         }
 
-        public void GainGold(int gold)
+        public void GainGold(int gold) //add coins in the inventory
         {
             if (gold <= 0)
                 return;
@@ -46,7 +46,7 @@ namespace DungeonProject
             CurrentGold += gold;
         }
 
-        void ReplaceItem(Item newStuff, Item oldStuff)
+        void ReplaceItem(Item newStuff, Item oldStuff) //if a slot is already occupied, the player can replace it by the new looted item
         {
             Console.WriteLine("\nThis slot is already occupied !");
             Console.WriteLine("The new equipment is added to the inventory.");
@@ -54,7 +54,7 @@ namespace DungeonProject
             currentEquipment.Add(newStuff);
         }
 
-        public void GiveSword(Weapon weapon)
+        public void GiveSword(Weapon weapon) //put a sword in the inventory
         {            
             if (CurrentSword.Value == 0)
             {
@@ -68,7 +68,7 @@ namespace DungeonProject
             }
         }
 
-        public void GiveArmor(Armor armor)
+        public void GiveArmor(Armor armor) //put an armor in the inventory
         {            
             if (CurrentArmor.Value == 0)
             {
@@ -148,6 +148,21 @@ namespace DungeonProject
             ShowItems();
             ShowEquipment();
             ShowCoins();
+        }
+
+        public void GiveLoot(Character chara)
+        {
+            Console.WriteLine(chara.Name + " has dropped his inventory ! You take all the items in your inventory.");
+            
+            foreach (Item item in items)
+            {
+                if (item.GetType() != typeof(Weapon) || item.GetType() != typeof(Armor))
+                {
+                    Console.WriteLine(chara.Name + " add the " + item.Name + " to his inventory.");
+                    chara.inventory.items.Add(item);
+                    Console.ReadKey();
+                }
+            }
         }
     }
 }

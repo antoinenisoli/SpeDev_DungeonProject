@@ -12,3 +12,10 @@ G:\Mes Fichiers\Documents\Pole 3D\3e année\programmation\C#\SpéDev\Dungeon\Dun
 G:\Mes Fichiers\Documents\Pole 3D\3e année\programmation\C#\SpéDev\Dungeon\DungeonProject\obj\Debug\DungeonProject.csproj.CoreCompileInputs.cache
 G:\Mes Fichiers\Documents\Pole 3D\3e année\programmation\C#\SpéDev\Dungeon\DungeonProject\obj\Debug\DungeonProject.exe
 G:\Mes Fichiers\Documents\Pole 3D\3e année\programmation\C#\SpéDev\Dungeon\DungeonProject\obj\Debug\DungeonProject.pdb
+G:\Mes Fichiers\Documents\Pole 3D\3e année\programmation\C#\SpéDev\New_Dungeon\DungeonProject\bin\Debug\DungeonProject.exe.config
+G:\Mes Fichiers\Documents\Pole 3D\3e année\programmation\C#\SpéDev\New_Dungeon\DungeonProject\bin\Debug\DungeonProject.exe
+G:\Mes Fichiers\Documents\Pole 3D\3e année\programmation\C#\SpéDev\New_Dungeon\DungeonProject\bin\Debug\DungeonProject.pdb
+G:\Mes Fichiers\Documents\Pole 3D\3e année\programmation\C#\SpéDev\New_Dungeon\DungeonProject\obj\Debug\DungeonProject.csprojAssemblyReference.cache
+G:\Mes Fichiers\Documents\Pole 3D\3e année\programmation\C#\SpéDev\New_Dungeon\DungeonProject\obj\Debug\DungeonProject.csproj.CoreCompileInputs.cache
+G:\Mes Fichiers\Documents\Pole 3D\3e année\programmation\C#\SpéDev\New_Dungeon\DungeonProject\obj\Debug\DungeonProject.exe
+G:\Mes Fichiers\Documents\Pole 3D\3e année\programmation\C#\SpéDev\New_Dungeon\DungeonProject\obj\Debug\DungeonProject.pdb

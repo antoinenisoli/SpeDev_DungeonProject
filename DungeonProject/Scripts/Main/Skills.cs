@@ -8,6 +8,6 @@ namespace DungeonProject
 {
     enum Skills
     {
-        Dash,
+        
     }
 }

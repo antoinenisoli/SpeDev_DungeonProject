@@ -90,7 +90,7 @@ namespace DungeonProject
             }
         }
 
-        public Player(string name, int currentHealth, int maxHealth, int currentPt, int maxPt, int force, int xp, int currentLevel) : base(name, currentHealth, maxHealth, force) //build the player
+        public Player(string name, int currentHealth, int maxHealth, int currentPt, int maxPt, int strength, int xp, int currentLevel) : base(name, currentHealth, maxHealth, strength) //build the player
         {
             this.MaxPt = maxPt;
             this.CurrentPT = currentPt;
@@ -129,7 +129,7 @@ namespace DungeonProject
             Console.ReadKey();
         }        
 
-        void FullRestore()
+        void FullRestore() //restore the player's statistics
         {
             CurrentPT = MaxPt;
             CurrentHealth = MaxHealth;
