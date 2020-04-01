@@ -8,13 +8,42 @@ namespace DungeonProject
 {
     class Ennemy : Character
     {
-        public int xpValue;
-        public int goldValue;
+        int xpValue;
+        int goldValue;
+
+        public int XpValue { get => xpValue;
+            set
+            {
+                if (value < 0)
+                {
+                    value = 0;
+                }
+
+                xpValue = value;
+            }
+        }
+
+        public int GoldValue { get => goldValue;
+            set
+            {
+                if (value < 0)
+                {
+                    value = 0;
+                }
+
+                goldValue = value;
+            }
+        }
 
         public Ennemy(string name, int currentHealth, int maxHealth, int strength, int xpValue, int goldValue) : base(name, currentHealth, maxHealth, strength)
         {
-            this.xpValue = xpValue;
-            this.goldValue = goldValue;
+            this.XpValue = xpValue;
+            this.GoldValue = goldValue;
+        }
+
+        public Ennemy InstatiateCopy() //create a copy of a precise enemy
+        {
+            return new Ennemy(Name, CurrentHealth, MaxHealth, Strength, XpValue, GoldValue);
         }
 
         public override void IsDead()

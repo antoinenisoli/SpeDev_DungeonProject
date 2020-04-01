@@ -39,8 +39,8 @@ namespace DungeonProject
 
             if (mob.CurrentHealth <= 0)
             {                
-                hero.GainXp(mob.xpValue);
-                hero.inventory.GainGold(mob.goldValue);
+                hero.GainXp(mob.XpValue);
+                hero.inventory.GainGold(mob.GoldValue);
                 inRoom.ennemiesInRoom.Remove(mob);
                 mob.inventory.GiveLoot(hero);
             }
