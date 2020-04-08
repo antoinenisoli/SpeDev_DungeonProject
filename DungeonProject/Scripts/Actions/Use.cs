@@ -12,10 +12,10 @@ namespace DungeonProject
         {
             Console.Clear();
 
-            if (player.inventory.items.Count > 0)
+            if (player.Inventory.items.Count > 0)
             {
-                Item pickedItem = Menu.PickElementFromList<Item>(player.inventory.items, "Your inventory :");
-                player.inventory.items.Remove(pickedItem);
+                Item pickedItem = Menu.PickElementFromList<Item>(player.Inventory.items, "Your inventory :");
+                player.Inventory.items.Remove(pickedItem);
                 pickedItem.Effect(player);
             }
             else

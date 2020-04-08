@@ -36,16 +36,16 @@ namespace DungeonProject
             for (int increment = 1; increment > 0; increment--)
             {
                 Item item = RandomGenerators.ItemGenerator();
-                enemy.inventory.items.Add(item); //give items in the enemy's inventory
+                enemy.Inventory.items.Add(item); //give items in the enemy's inventory
             }
 
             int random01 = RandomGenerators.Instance.RandomNumber(8, 11); //give an armor to the enemy
             Item randomArmor = GameData.ItemList[random01];
-            enemy.inventory.GiveArmor((Armor)randomArmor);
+            randomArmor.GiveTo(enemy);
 
             int random02 = RandomGenerators.Instance.RandomNumber(5, 8); //give a weapon to the enemy
             Item randomWeapon = GameData.ItemList[random02];
-            enemy.inventory.GiveSword((Weapon)randomWeapon);
+            randomWeapon.GiveTo(enemy);
         }
 
         void GenerateBed() //is ther a bed in the room ?

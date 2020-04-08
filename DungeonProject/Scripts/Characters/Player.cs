@@ -108,13 +108,20 @@ namespace DungeonProject
             Environment.Exit(0);
         }
 
-        public override string ShowCharacter() //show the player's attributes
+        public override void ShowCharacter() //show the player's attributes
         {
-            Console.WriteLine("");
+            string description =
+                "[ " + Name + " : | PV = " + CurrentHealth + "/" + MaxHealth + " | PT = " + CurrentPT + "/" + MaxPt +
+            "\n| Strength = " + Strength + " | XP = " + XP + "/" + NextLevel + " | Level " + CurrentLevel + " ]";
 
-            return 
+            Console.WriteLine("\n" + ToString());            
+        }
+
+        public override string ToString()
+        {
+            return
             (
-            "[ " + Name + " : | PV = " + CurrentHealth + "/" + MaxHealth + " | PT = " + CurrentPT + "/" + MaxPt + 
+            "[ " + Name + " : | PV = " + CurrentHealth + "/" + MaxHealth + " | PT = " + CurrentPT + "/" + MaxPt +
             "\n| Strength = " + Strength + " | XP = " + XP + "/" + NextLevel + " | Level " + CurrentLevel + " ]"
             );
         }

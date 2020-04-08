@@ -8,6 +8,30 @@ namespace DungeonProject
 {
     class InspectRoom : Action
     {
+        public override string ToString()
+        {
+            return "Inspect the room";
+        }
+
+        public void PrintList<T>(string msg, string emptyMsg, List<T> list)
+        {
+            if (list.Count > 0) //show the elements in the room
+            {
+                Console.WriteLine(msg);
+
+                foreach (T obj in list)
+                {
+                    Console.WriteLine("\n" + obj.ToString());
+                    Console.ReadKey();
+                }
+            }
+            else
+            {
+                Console.WriteLine(emptyMsg);
+                Console.ReadKey();
+            }
+        }
+
         public override void Execute(Player player, Room inRoom)
         {
             Console.Clear();
@@ -18,50 +42,16 @@ namespace DungeonProject
                 Console.ReadKey();
             }
 
-            if (inRoom.ennemiesInRoom.Count > 0) //show the ennemies in the room
-            {
-                Console.WriteLine("This room contains these ennemies :");
-
-                foreach (Ennemy mob in inRoom.ennemiesInRoom)
-                {
-                    Console.WriteLine("");
-                    Console.WriteLine("");
-                    Console.WriteLine(mob.ToString());
-                    mob.ShowInventory();
-                    Console.ReadKey();
-                }
-            }
-            else
-            {
-                Console.WriteLine("There is no ennemies here.");
-                Console.ReadKey();
-            }
-
-            if (inRoom.itemsInRoom.Count > 0) //show the items in the room
-            {
-                Console.WriteLine("");
-                Console.WriteLine("\nThis room contains these items :");
-
-                foreach (Item item in inRoom.itemsInRoom)
-                {
-                    Console.WriteLine(item.ToString());
-                }
-
-                Console.ReadKey();
-            }
-            else
-            {
-                Console.WriteLine("There is no items here.");
-                Console.ReadKey();
-            }            
-
-            Console.WriteLine("");
+            PrintList("This room contains these ennemies :", "There is no ennemies here. ", inRoom.ennemiesInRoom);
+            PrintList("This room contains these items :", "There is no items here.", inRoom.itemsInRoom);
+            
+            Console.WriteLine("\nThat's all !");
+            Console.ReadKey();
+            Console.WriteLine("End of inspection.");
+            Console.ReadKey();
             Console.Clear();
         }
 
-        public override string ToString()
-        {
-            return "Inspect the room";
-        }
+        
     }
 }

@@ -18,5 +18,21 @@ namespace DungeonProject
         {
             return " [Armor : " + base.ToString();
         }
+
+        public override void GiveTo(Character chara)
+        {
+            Inventory inventory = chara.Inventory;
+
+            if (inventory.CurrentArmor.Value == 0)
+            {
+                inventory.currentEquipment.Add(this);
+                inventory.CurrentArmor = this;
+            }
+            else
+            {
+                inventory.ReplaceStuff(this, inventory.CurrentArmor);
+                inventory.CurrentArmor = this;
+            }
+        }
     }
 }

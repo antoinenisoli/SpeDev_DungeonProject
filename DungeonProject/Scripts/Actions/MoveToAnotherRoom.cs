@@ -23,7 +23,7 @@ namespace DungeonProject
             {
                 Console.Clear();
                 Console.WriteLine("***************************************");
-                Console.WriteLine(player.ShowCharacter());
+                player.ShowCharacter();
                 player.ShowInventory();
                 Action pickedAction = Menu.PickElementFromList<Action>(GameData.ActionsList, null);
                 pickedAction.Execute(player, currentRoom);

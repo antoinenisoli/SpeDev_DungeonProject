@@ -16,19 +16,7 @@ namespace DungeonProject
             {
                 Item pickedItem = Menu.PickElementFromList<Item>(inRoom.itemsInRoom, "Items in the room :");
                 inRoom.itemsInRoom.Remove(pickedItem);
-
-                if (pickedItem.GetType() == typeof(Armor))
-                {
-                    player.inventory.GiveArmor((Armor)pickedItem);
-                }
-                else if (pickedItem.GetType() == typeof(Weapon))
-                {
-                    player.inventory.GiveSword((Weapon)pickedItem);
-                }
-                else
-                {
-                    player.inventory.items.Add(pickedItem);
-                }
+                pickedItem.GiveTo(player);
                 
                 Console.WriteLine(player.Name + " add the " + pickedItem.Name + " to his inventory.");
             }

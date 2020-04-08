@@ -10,7 +10,7 @@ namespace DungeonProject
     {
         public override string ToString()
         {
-            return "Attack an ennemy";
+            return "Start a fight with an ennemy";
         }
 
         public override void Execute(Player player, Room inRoom)
@@ -24,33 +24,19 @@ namespace DungeonProject
             else
             {
                 Ennemy pickedEnnemy = Menu.PickElementFromList<Ennemy>(inRoom.ennemiesInRoom, " Which ennemy do you want to fight ? ");
-                Battle(player, pickedEnnemy, inRoom);
-            }
-        }
+                Console.WriteLine("You choosed to fight " + pickedEnnemy.Name);
+                player.InFight = true;
+                Console.ReadKey();
 
-        public void Battle(Player hero, Ennemy mob, Room inRoom) //fight between a character and his opponent
-        {
-            Console.Clear();
-            Console.WriteLine("Un combat s'enclenche entre " + hero.Name + " et " + mob.Name + " !");
-            Console.ReadKey();
-            Console.WriteLine(hero.ShowCharacter());
-            Console.WriteLine(mob.ShowCharacter());
-            hero.Attack(mob);
-
-            if (mob.CurrentHealth <= 0)
-            {                
-                hero.GainXp(mob.XpValue);
-                hero.inventory.GainGold(mob.GoldValue);
-                inRoom.ennemiesInRoom.Remove(mob);
-                mob.inventory.GiveLoot(hero);
+                while (pickedEnnemy.CurrentHealth > 0 && player.CurrentHealth > 0 && player.InFight)
+                {
+                    Console.Clear();
+                    player.ShowCharacter();
+                    pickedEnnemy.ShowCharacter();
+                    FightChoice pickedChoice = Menu.PickElementFromList<FightChoice>(GameData.FightChoicesList, "What do you do ?");
+                    pickedChoice.Choice(player, pickedEnnemy, inRoom);
+                }
             }
-            else
-            {
-                Console.WriteLine(mob.Name + " riposte !");
-                mob.Attack(hero);                
-            }
-            
-            Console.Clear();
         }
     }
 }

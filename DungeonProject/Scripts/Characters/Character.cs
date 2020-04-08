@@ -8,12 +8,14 @@ namespace DungeonProject
 {
     abstract class Character
     {
-        public Inventory inventory = new Inventory();
-
-        private string name;
-        private int currentHealth;
-        private int maxHealth;
-        private int strength;
+        string name;
+        int currentHealth;
+        int maxHealth;
+        int strength;
+        bool inFight;
+        public bool InFight { get => inFight; set => inFight = value; }
+        Inventory inventory;
+        public Inventory Inventory { get => inventory; set => inventory = value; }
 
         public string Name
         {
@@ -46,7 +48,7 @@ namespace DungeonProject
                 if (value > MaxHealth)
                 {
                     value = MaxHealth;
-                    
+
                 }
 
                 currentHealth = value;
@@ -77,7 +79,8 @@ namespace DungeonProject
             this.Name = name;
             this.MaxHealth = maxHealth;
             this.CurrentHealth = currentHealth;
-            this.Strength = strength;            
+            this.Strength = strength;
+            Inventory = new Inventory(this);
         }
 
         public virtual void IsDead()
@@ -85,19 +88,20 @@ namespace DungeonProject
 
         }
 
-        public abstract string ShowCharacter();
+        public virtual void ShowCharacter()
+        {
+
+        }
 
         public virtual void ShowInventory()
         {
-            inventory.ShowInventory();
+            Inventory.ShowInventory();
         }
         
         public void Attack(Character target) //attack the target character
         {
             double random = RandomGenerators.Instance.RandomDouble(0, 0.1); //10% = 0.1; //1% = 0.01;
-            int damage = (inventory.CurrentSword.Value + strength) - target.inventory.CurrentArmor.Value;
-            int total = damage + RandomGenerators.CalculatePercentage(damage, random);
-
+            int total = ComputeDamages(target) + RandomGenerators.CalculatePercentage(ComputeDamages(target), random);
             Console.WriteLine("");
             Console.WriteLine("////////////");
 
@@ -107,13 +111,18 @@ namespace DungeonProject
             }
             else
             {               
-                Console.WriteLine(Name + " inflige " + total + " points de dégâts à " + target.Name);                
-                target.CurrentHealth -= damage;
+                Console.WriteLine(Name + " inflicts " + total + " damage points to " + target.Name);                
+                target.CurrentHealth -= total;
             }
 
             Console.WriteLine("////////////");
             Console.WriteLine("");
             Console.ReadKey();
+        }
+
+        public int ComputeDamages(Character target) //calculate the damage amount of the character's attack
+        {
+            return Inventory.CurrentSword.Value + strength - target.Inventory.CurrentArmor.Value;
         }
     }
 }

@@ -49,18 +49,17 @@ namespace DungeonProject
         public override void IsDead()
         {
             Console.WriteLine(Name + " is now dead !");
-            Console.ReadKey();
         }
-
-        public override string ShowCharacter()
+        
+        public override void ShowCharacter()
         {
-            return "[ " + Name + " : | PV = " + CurrentHealth + "/" + MaxHealth + " | Strength = " + Strength + " | " + "]";
+            Console.WriteLine("[ " + Name + " : | PV = " + CurrentHealth + "/" + MaxHealth + " | Strength = " + Strength + " | " + "]");
         }
-
+        
         public override void ShowInventory()
         {
-            inventory.ShowItems();
-            inventory.ShowEquipment();
+            Inventory.ShowItems();
+            Inventory.ShowEquipment();
         }
 
         public void SetName(string newName)
@@ -70,8 +69,9 @@ namespace DungeonProject
 
         public override string ToString()
         {
-            
-            return ShowCharacter();
+            ShowCharacter();
+            ShowInventory();
+            return null;
         }
     }
 }

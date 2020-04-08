@@ -21,7 +21,7 @@ namespace DungeonProject
             Console.WriteLine("");
             Console.ReadKey();
             
-            player.inventory.CurrentGold += Value;
+            player.Inventory.CurrentGold += Value;
         }
     }
 }

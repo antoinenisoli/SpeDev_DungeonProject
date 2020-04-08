@@ -27,6 +27,11 @@ namespace DungeonProject
             return " | Item : " + name + " | Value : " + value + " | ";
         }
 
+        public virtual void GiveTo(Character chara)
+        {
+            chara.Inventory.items.Add(this);
+        }
+
         public virtual void Effect(Player player)
         {
             Console.WriteLine("");
