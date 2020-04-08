@@ -98,31 +98,41 @@ namespace DungeonProject
             Inventory.ShowInventory();
         }
         
-        public void Attack(Character target) //attack the target character
+        public void Attack(Character target) //attack the target with a regular attack
         {
-            double random = RandomGenerators.Instance.RandomDouble(0, 0.1); //10% = 0.1; //1% = 0.01;
-            int total = ComputeDamages(target) + RandomGenerators.CalculatePercentage(ComputeDamages(target), random);
-            Console.WriteLine("");
-            Console.WriteLine("////////////");
-
-            if (total <= 0)
+            if (CurrentHealth > 0)
             {
-                Console.WriteLine(target.Name + " has completely absorbed the damages !");
-            }
-            else
-            {               
-                Console.WriteLine(Name + " inflicts " + total + " damage points to " + target.Name);                
-                target.CurrentHealth -= total;
-            }
+                double random = RandomGenerators.Instance.RandomDouble(0, 0.1); //10% = 0.1; //1% = 0.01;
+                int total = ComputeDamages(target) + RandomGenerators.CalculatePercentage(ComputeDamages(target), random);
 
-            Console.WriteLine("////////////");
-            Console.WriteLine("");
-            Console.ReadKey();
+                if (total <= 0)
+                {
+                    Console.WriteLine("\n////////////");
+                    Console.WriteLine(target.Name + " has completely absorbed the damages !");
+                    Console.WriteLine("////////////");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.WriteLine("\n" + Name + " attacks " + target.Name + " !");
+                    Console.ReadKey();
+                    target.TakeDamages(total);
+                }
+            }
         }
 
         public int ComputeDamages(Character target) //calculate the damage amount of the character's attack
         {
             return Inventory.CurrentSword.Value + strength - target.Inventory.CurrentArmor.Value;
+        }
+
+        public void TakeDamages(int amount)
+        {
+            Console.WriteLine("\n////////////");
+            Console.WriteLine(Name + " receive " + amount + " damage points !");
+            Console.WriteLine("////////////");
+            Console.ReadKey();
+            CurrentHealth -= amount;
         }
     }
 }

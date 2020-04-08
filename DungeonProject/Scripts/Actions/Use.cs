@@ -10,10 +10,9 @@ namespace DungeonProject
     {
         public override void Execute(Player player, Room inRoom)
         {
-            Console.Clear();
-
             if (player.Inventory.items.Count > 0)
             {
+                Console.Clear();
                 Item pickedItem = Menu.PickElementFromList<Item>(player.Inventory.items, "Your inventory :");
                 player.Inventory.items.Remove(pickedItem);
                 pickedItem.Effect(player);
@@ -21,6 +20,7 @@ namespace DungeonProject
             else
             {
                 Console.WriteLine("There is no items to use...");
+                Console.ReadKey();
             }
 
             Console.Clear();

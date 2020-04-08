@@ -10,8 +10,24 @@ namespace DungeonProject
     {
         public List<Ennemy> ennemiesInRoom = new List<Ennemy>();
         public List<Item> itemsInRoom = new List<Item>();
+        bool containExit;
+        public bool ContainExit { get => containExit; set => containExit = value; }
         bool bed;
         public bool Bed { get => bed; set => bed = value; }
+        int directions;
+        public int Directions { get => directions;
+            set
+            {
+                if (value < 0)
+                {
+                    value = 0;
+                }
+
+                directions = value;
+            }
+        }
+
+        public Dictionary<string, Room> neighbors = new Dictionary<string, Room>();
 
         public Room(int maxEnnemies, int maxItems)
         {            
@@ -24,9 +40,20 @@ namespace DungeonProject
             {
                 RandomMob();
             }
+            
 
             GenerateBed();
-        }     
+        }
+
+        public void AddNeighbor(string key, Room room)
+        {
+            neighbors.Add(key, room);
+        }
+
+        public List<string> GetDirections()
+        {
+            return neighbors.Keys.ToList();
+        }
         
         public void RandomMob() //generate a new ennemy and give him some stuff and items
         {

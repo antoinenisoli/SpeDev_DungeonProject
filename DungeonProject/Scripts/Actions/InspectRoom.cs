@@ -34,6 +34,14 @@ namespace DungeonProject
 
         public override void Execute(Player player, Room inRoom)
         {
+            void ShowOrNot()
+            {
+                foreach (Ennemy ennemy in inRoom.ennemiesInRoom)
+                {
+                    ennemy.ShowStuff = !ennemy.ShowStuff;
+                }
+            }
+
             Console.Clear();
 
             if (inRoom.Bed) //show the bed in the room
@@ -42,7 +50,10 @@ namespace DungeonProject
                 Console.ReadKey();
             }
 
+            ShowOrNot();
             PrintList("This room contains these ennemies :", "There is no ennemies here. ", inRoom.ennemiesInRoom);
+            ShowOrNot();
+
             PrintList("This room contains these items :", "There is no items here.", inRoom.itemsInRoom);
             
             Console.WriteLine("\nThat's all !");

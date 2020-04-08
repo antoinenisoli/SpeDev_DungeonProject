@@ -27,9 +27,13 @@ namespace DungeonProject
         static List<FightChoice> fightChoicesList = new List<FightChoice>();
         static List<Item> itemList = new List<Item>();
         static List<Ennemy> ennemiesList = new List<Ennemy>();
-        static Player hero = new Player("Hero", 150, 150, 50, 50, 30, 0, 1);
+        static List<Skill> skillList = new List<Skill>();
+        static Player hero = new Player("Hero", 300, 300, 50, 50, 30, 0, 1);
 
+        public static int RoomCount;
+        public static int Up, Down, Left, Right; //coordinates in the dungeon
         public static Player Hero { get => hero; set => hero = value; }
+        public static List<Skill> SkillList { get => skillList; set => skillList = value; }
         public static List<Action> ActionsList { get => actionsList; set => actionsList = value; }
         public static List<FightChoice> FightChoicesList { get => fightChoicesList; set => fightChoicesList = value; }
         public static List<Ennemy> EnnemiesList { get => ennemiesList; set => ennemiesList = value; }        
@@ -38,6 +42,7 @@ namespace DungeonProject
         public static void FillList() //the list of all the game's possible assets and parameters
         {
             AddActions();
+            AddSkills();
             AddFightChoices();
             AddEnnemies();
             AddItems();
@@ -60,6 +65,13 @@ namespace DungeonProject
             FightChoicesList.Add(new Attack());
             FightChoicesList.Add(new CastSkill());
             FightChoicesList.Add(new Flee());
+        }
+
+        static void AddSkills()
+        {
+            SkillList.Add(new Lightning(8, 15));
+            SkillList.Add(new IceRay(10));
+            SkillList.Add(new Curse(25));
         }
 
         static void AddEnnemies()
@@ -98,6 +110,11 @@ namespace DungeonProject
         {
             Console.WriteLine("\nYour choice must be valid !\n ");
             Console.ReadKey();
+        }
+
+        public static string ShowCoordinates()
+        {
+            return "Current coordinates : { " + Up + " }" + "|" + "{ " + Down + " }" + "|" + "{ " + Left + " }" + "|" + "{ " + Right + " }";
         }
     }
 }

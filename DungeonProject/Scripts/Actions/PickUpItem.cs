@@ -16,8 +16,7 @@ namespace DungeonProject
             {
                 Item pickedItem = Menu.PickElementFromList<Item>(inRoom.itemsInRoom, "Items in the room :");
                 inRoom.itemsInRoom.Remove(pickedItem);
-                pickedItem.GiveTo(player);
-                
+                pickedItem.GiveTo(player);                
                 Console.WriteLine(player.Name + " add the " + pickedItem.Name + " to his inventory.");
             }
             else

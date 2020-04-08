@@ -14,7 +14,7 @@ namespace DungeonProject
             Start();            
         }
 
-        static void Start() //create a new room to explore
+        static void Start() //start the game
         {
             Console.Clear();            
             Player hero = GameData.Hero;
@@ -22,7 +22,8 @@ namespace DungeonProject
             Console.WriteLine("Be careful, you can find danger at any corner of this dark place...");
             Console.ReadKey();
             Action firstAction = new MoveToAnotherRoom();
-            firstAction.Execute(hero, new Room(0, 0));
+            Room firstRoom = new Room(0, 0);
+            firstAction.Execute(hero, firstRoom);
         }       
     }
 }

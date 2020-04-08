@@ -27,7 +27,6 @@ namespace DungeonProject
             {
                 Console.WriteLine("You're attempt to flee has failed !");
                 Console.ReadKey();
-                Console.WriteLine(mob.Name + " attack you !");
                 mob.Attack(player);
             }            
         }

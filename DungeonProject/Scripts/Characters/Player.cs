@@ -111,26 +111,23 @@ namespace DungeonProject
         public override void ShowCharacter() //show the player's attributes
         {
             string description =
-                "[ " + Name + " : | PV = " + CurrentHealth + "/" + MaxHealth + " | PT = " + CurrentPT + "/" + MaxPt +
+            "[ " + Name + " : | PV = " + CurrentHealth + "/" + MaxHealth + " | PT = " + CurrentPT + "/" + MaxPt +
             "\n| Strength = " + Strength + " | XP = " + XP + "/" + NextLevel + " | Level " + CurrentLevel + " ]";
 
-            Console.WriteLine("\n" + ToString());            
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(description);
+            Console.ResetColor();
         }
 
         public override string ToString()
         {
-            return
-            (
-            "[ " + Name + " : | PV = " + CurrentHealth + "/" + MaxHealth + " | PT = " + CurrentPT + "/" + MaxPt +
-            "\n| Strength = " + Strength + " | XP = " + XP + "/" + NextLevel + " | Level " + CurrentLevel + " ]"
-            );
+            ShowCharacter();
+            return null;
         }
 
         public void GainXp(int gain) //the player win some xp
         {
-            Console.WriteLine("");
-            Console.WriteLine(Name + " has won " + gain + " xp !");
-            Console.WriteLine("");
+            Console.WriteLine("\n" + Name + " has won " + gain + " xp !");
             XP += gain;
 
             Console.ReadKey();
@@ -144,8 +141,7 @@ namespace DungeonProject
 
         public void LevelUp() //the player reaches a new level, his attributes are increased by between 1 and 10%
         {
-            Console.WriteLine("");
-            Console.WriteLine("Congratulations ! " + Name + " has reach a new level !");
+            Console.WriteLine("\nCongratulations ! " + Name + " has reach a new level !");
             Console.ReadKey();
             CurrentLevel++;
             NextLevel += 100; //increase the new max level            

@@ -47,6 +47,9 @@
     <Compile Include="Scripts\Actions\FightChoices\Attack.cs" />
     <Compile Include="Scripts\Actions\FightChoices\FightChoice.cs" />
     <Compile Include="Scripts\Actions\FightChoices\Flee.cs" />
+    <Compile Include="Scripts\Actions\FightChoices\Skills\Curse.cs" />
+    <Compile Include="Scripts\Actions\FightChoices\Skills\IceRay.cs" />
+    <Compile Include="Scripts\Actions\FightChoices\Skills\Lightning.cs" />
     <Compile Include="Scripts\Item\Armor.cs" />
     <Compile Include="Scripts\Characters\Character.cs" />
     <Compile Include="Scripts\Item\CoinsBag.cs" />
@@ -70,7 +73,7 @@
     <Compile Include="Scripts\Main\RandomGenerators.cs" />
     <Compile Include="Scripts\Actions\Rest.cs" />
     <Compile Include="Scripts\Main\Room.cs" />
-    <Compile Include="Scripts\Characters\Skills.cs" />
+    <Compile Include="Scripts\Actions\FightChoices\Skills\Skill.cs" />
     <Compile Include="Scripts\Actions\Use.cs" />
     <Compile Include="Scripts\Item\Weapon.cs" />
     <Compile Include="Scripts\Actions\FightChoices\CastSkill.cs" />

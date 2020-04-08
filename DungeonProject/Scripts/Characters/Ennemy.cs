@@ -10,6 +10,8 @@ namespace DungeonProject
     {
         int xpValue;
         int goldValue;
+        bool showStuff;
+        public bool ShowStuff { get => showStuff; set => showStuff = value; }
 
         public int XpValue { get => xpValue;
             set
@@ -49,11 +51,14 @@ namespace DungeonProject
         public override void IsDead()
         {
             Console.WriteLine(Name + " is now dead !");
+            Console.ReadKey();
         }
         
         public override void ShowCharacter()
         {
-            Console.WriteLine("[ " + Name + " : | PV = " + CurrentHealth + "/" + MaxHealth + " | Strength = " + Strength + " | " + "]");
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("\n[ " + Name + " : | PV = " + CurrentHealth + "/" + MaxHealth + " | Strength = " + Strength + " | " + "]");
+            Console.ResetColor();
         }
         
         public override void ShowInventory()
@@ -69,9 +74,16 @@ namespace DungeonProject
 
         public override string ToString()
         {
-            ShowCharacter();
-            ShowInventory();
-            return null;
+            if (ShowStuff)
+            {
+                ShowCharacter();
+                ShowInventory();
+                return null; 
+            }
+            else
+            {
+                return "[ " + Name + " : | PV = " + CurrentHealth + "/" + MaxHealth + " | Strength = " + Strength + " | " + "]";
+            }
         }
     }
 }

@@ -69,7 +69,7 @@ namespace DungeonProject
             
             if (currentEquipment.Count > 0)
             {
-                if (CurrentArmor != null)
+                if (CurrentArmor != null && CurrentArmor.Value > 0)
                 {
                     Console.WriteLine(CurrentArmor.ToString());
                 }
@@ -78,7 +78,7 @@ namespace DungeonProject
                     Console.WriteLine("*[Armor : None ]*");
                 }
 
-                if (CurrentSword != null)
+                if (CurrentSword != null && CurrentSword.Value > 0)
                 {
                     Console.WriteLine(CurrentSword.ToString());
                 }
@@ -128,6 +128,16 @@ namespace DungeonProject
             ShowItems();
             ShowEquipment();
             ShowCoins();
-        }        
+        }
+
+        public override string ToString()
+        {
+            Console.WriteLine("---------------------------");
+            Console.WriteLine("[---INVENTORY---]");
+            ShowItems();
+            ShowEquipment();
+            ShowCoins();
+            return null;
+        }
     }
 }

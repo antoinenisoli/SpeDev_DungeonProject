@@ -31,10 +31,23 @@ namespace DungeonProject
                 while (pickedEnnemy.CurrentHealth > 0 && player.CurrentHealth > 0 && player.InFight)
                 {
                     Console.Clear();
+                    Console.WriteLine("=============> IN FIGHT <============\n");
                     player.ShowCharacter();
                     pickedEnnemy.ShowCharacter();
-                    FightChoice pickedChoice = Menu.PickElementFromList<FightChoice>(GameData.FightChoicesList, "What do you do ?");
+                    FightChoice pickedChoice = Menu.PickElementFromList<FightChoice>(GameData.FightChoicesList, "\nWhat do you do ?");
                     pickedChoice.Choice(player, pickedEnnemy, inRoom);
+                }
+
+                if (pickedEnnemy.CurrentHealth <= 0) //the mob is now dead
+                {
+                    player.GainXp(pickedEnnemy.XpValue); //the player win mob's xp
+                    player.Inventory.GainGold(pickedEnnemy.GoldValue); //the player win mob's gold
+
+                    Console.WriteLine(pickedEnnemy.Name + " has dropped his inventory on the floor of the room !");
+                    pickedEnnemy.Inventory.ShowItems();
+                    inRoom.itemsInRoom.AddRange(pickedEnnemy.Inventory.items);
+                    inRoom.ennemiesInRoom.Remove(pickedEnnemy);
+                    Console.ReadKey();
                 }
             }
         }
