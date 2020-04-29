@@ -10,7 +10,6 @@ namespace DungeonProject
     {
         public Random rdm = new Random();
         int currentPt;
-
         public int CurrentPT { get => currentPt;
             set
             {
@@ -29,7 +28,6 @@ namespace DungeonProject
         }
 
         int maxPt;
-
         public int MaxPt { get => maxPt;
             set
             {
@@ -43,7 +41,6 @@ namespace DungeonProject
         }
 
         int xp;
-
         public int XP { get => xp;
             set
             {
@@ -63,7 +60,6 @@ namespace DungeonProject
         }
 
         int currentLevel;
-
         public int CurrentLevel { get => currentLevel;
             set
             {
@@ -77,7 +73,6 @@ namespace DungeonProject
         }
 
         int nextLevel = 100;
-
         public int NextLevel { get => nextLevel;
         set
             {

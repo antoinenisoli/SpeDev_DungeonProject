@@ -22,7 +22,7 @@ namespace DungeonProject
                 return;
             }
 
-            if (inRoom.Bed)
+            if (inRoom.ContainBed)
             {
                 Console.WriteLine("There's a bed in the room !");
                 Console.WriteLine(player.Name + " go to sleep in the bed.");
@@ -38,7 +38,7 @@ namespace DungeonProject
                 Console.ReadKey();
                 Console.WriteLine("But the bed is fading away !");
                 Console.ReadKey();
-                inRoom.Bed = false;
+                inRoom.ContainBed = false;
                 player.CurrentHealth += 30;
             }
             else

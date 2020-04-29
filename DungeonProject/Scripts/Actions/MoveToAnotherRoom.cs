@@ -26,13 +26,11 @@ namespace DungeonProject
             int pickedDirection = Menu.ChooseStrFromList(currentRoom.GetDirections(), "\nIn which direction do you want to go ?");
             string str = pickedDirection.ToString();
             Room pickedRoom = currentRoom.neighbors[directionsList[pickedDirection]];
-            //Console.WriteLine(pickedRoom.ennemiesInRoom.Count);
 
             Console.WriteLine("You arrived in a new room...");
             Console.WriteLine("You have travelled " + GameData.RoomCount + " times.");
             GameData.RoomCount++;
-            Console.WriteLine(GameData.ShowCoordinates());
-            Console.ReadKey();            
+            Console.ReadKey();                            
 
             bool turn = false;
             while (!turn) //the player choose his action
@@ -46,12 +44,7 @@ namespace DungeonProject
             }
         }
 
-        void SetupRoom()
-        {
-
-        }
-
-        void AssignDirections(Room currentRoom) //generate different directions to the room
+        public void AssignDirections(Room currentRoom) //generate different directions to the room
         {
             for (int i = 0; i <= currentRoom.Directions; i++)
             {
@@ -60,7 +53,7 @@ namespace DungeonProject
             }            
         }
 
-        Room GenerateRoom(int maxEnnemies, int maxItems)
+        public Room GenerateRoom(int maxEnnemies, int maxItems)
         {
             int randomEnnemies = RandomGenerators.Instance.RandomNumber(0, maxEnnemies);
             int randomItems = RandomGenerators.Instance.RandomNumber(0, maxItems);

@@ -24,7 +24,6 @@ namespace DungeonProject
                 Console.ReadKey();
                 mob.Attack(player);
                 Console.Clear();
-
             }
         }
     }

@@ -16,22 +16,22 @@ namespace DungeonProject
 
         public override string ToString()
         {
-            return " [Weapon : " + base.ToString();
+            return " [ Weapon : " + base.ToString();
         }
 
         public override void GiveTo(Character chara)
         {
             Inventory inventory = chara.Inventory;
 
-            if (inventory.CurrentSword.Value == 0)
+            if (inventory.CurrentWeapon.Value == 0)
             {
                 inventory.currentEquipment.Add(this);
-                inventory.CurrentSword = this;
+                inventory.CurrentWeapon = this;
             }
             else
             {
-                inventory.ReplaceStuff(this, inventory.CurrentSword);
-                inventory.CurrentSword = this;
+                inventory.ReplaceStuff(this, inventory.CurrentWeapon);
+                inventory.CurrentWeapon = this;
             }
         }
     }

@@ -46,13 +46,15 @@ namespace DungeonProject
 
         public static Ennemy MobGenerator() //generate a random enemy from the data's list
         {
-            Ennemy mob = GameData.EnnemiesList[Instance.RandomNumber(0,GameData.EnnemiesList.Count)];
+            int randomNumber = Instance.RandomNumber(0, GameData.EnnemiesList.Count);
+            Ennemy mob = GameData.EnnemiesList[randomNumber];
             return mob.InstatiateCopy();
         }
 
         public static Item ItemGenerator() //generate a random item from the data's list
         {
-            Item item = GameData.ItemList[Instance.RandomNumber(0, GameData.ItemList.Count)];
+            int randomNumber = Instance.RandomNumber(0, GameData.ItemList.Count);
+            Item item = GameData.ItemList[randomNumber];
             return item;
         }
     }

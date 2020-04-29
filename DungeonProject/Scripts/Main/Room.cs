@@ -12,8 +12,8 @@ namespace DungeonProject
         public List<Item> itemsInRoom = new List<Item>();
         bool containExit;
         public bool ContainExit { get => containExit; set => containExit = value; }
-        bool bed;
-        public bool Bed { get => bed; set => bed = value; }
+        bool containBed;
+        public bool ContainBed { get => containBed; set => containBed = value; }
         int directions;
         public int Directions { get => directions;
             set
@@ -31,18 +31,25 @@ namespace DungeonProject
 
         public Room(int maxEnnemies, int maxItems)
         {            
-            for (int i = maxItems; i > 0; i--)
+            for (int i = maxItems; i >= 0; i--)
             {
                 itemsInRoom.Add(RandomGenerators.ItemGenerator());
             }
 
-            for (int i = maxEnnemies; i > 0; i--)
+            for (int i = maxEnnemies; i >= 0; i--)
             {
                 RandomMob();
             }
-            
 
-            GenerateBed();
+            ContainBed = GenerateComponent(20, 100);            
+            if (GameData.RoomCount >= 3)
+            {
+                ContainExit = GenerateComponent(10, 100);                
+            }
+            else
+            {
+                ContainExit = false;
+            }
         }
 
         public void AddNeighbor(string key, Room room)
@@ -66,27 +73,33 @@ namespace DungeonProject
                 enemy.Inventory.items.Add(item); //give items in the enemy's inventory
             }
 
-            int random01 = RandomGenerators.Instance.RandomNumber(8, 11); //give an armor to the enemy
-            Item randomArmor = GameData.ItemList[random01];
-            randomArmor.GiveTo(enemy);
-
-            int random02 = RandomGenerators.Instance.RandomNumber(5, 8); //give a weapon to the enemy
-            Item randomWeapon = GameData.ItemList[random02];
-            randomWeapon.GiveTo(enemy);
+            GiveRandomStuff(enemy, GameData.ArmorList);
+            GiveRandomStuff(enemy, GameData.WeaponList);
         }
 
-        void GenerateBed() //is ther a bed in the room ?
+        public bool GenerateComponent(int randomRange, int maxRandom)
         {
-            int randomNumber = RandomGenerators.Instance.RandomNumber(0, 10);
-
-            if (randomNumber > 5)
+            int randomNumber = RandomGenerators.Instance.RandomNumber(0, maxRandom);
+            
+            if (randomNumber <= randomRange)
             {
-                Bed = true;
+                return true;
             }
             else
             {
-                Bed = false;
+                return false;
             }
+        }
+
+        public void GiveRandomStuff(Ennemy enemy, List<Equipment> list)
+        {
+            int random01 = RandomGenerators.Instance.RandomNumber(0, 10); //give stuff to the enemy
+            if (random01 >= 5)
+            {
+                int random02 = RandomGenerators.Instance.RandomNumber(0, list.Count); 
+                Equipment randomStuff = list[random02];
+                randomStuff.GiveTo(enemy);
+            }            
         }
     }
 }

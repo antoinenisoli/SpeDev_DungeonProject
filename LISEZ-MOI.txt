@@ -1,0 +1,13 @@
+Pour ce projet de Donjon demandé pour la spécialité Dev, j'ai réalisé la majorité des fonctionnalités demandées dans la consigne, a l'exception du systéme de déplacement entre les salles, fonctionnalité que je n'ai pas eu le temps de réaliser jusqu'au bout. 
+
+Pour le moment, une nouvelle salle est généré de maniére procédurale a chaque fois qu'on change de salle, avec de nouveaux ennemis et objets générées dans la salle. Une classe Room contient donc une liste d'ennemis et d'objets propres a cette salles, un lit a une probabilité de spawn a la création de la room, tout comme une sortie au bout de 3 salles explorées.
+Ces éléments sont prélevés depuis la classe GameData, qui comprend des listes statiques contenant les éléments disponbiles dans le jeu. Ce qui me permet de répertorier tout les ennemis et objets que je veut mettre dans le jeu et qui seront générés dans la nouvelle salle. Les listes sont remplis au lancement du jeu.
+
+J'ai essayé de factoriser un maximum le code, de faire des méthodes pour palier a chaque probléme de répétition de lignes de code, ou des lignes similaires. Le design pattern strategy s'est revélé trés utile, permettant de classer les objets du programme simplement. Par exemple, j'ai pu faire un systéme d'équipement en utilisant le design pattern Template Method, ayant une classe Equipment dont hérite Armor et Weapon. Chaque personnage et ennemi ont un inventaire, qui permet de faire un systéme de loot quand un ennemi meurt : son inventaire finit dans la liste d'objets dans la room, le joueur peut donc le ramasser.
+
+Ce genre d'infrastructure permet d'ajouter de nouveaux éléments facilement, même si je trouvais cela quelque fois fastidieux de créer une nouvelle série de classes pour créer de simple options de dialogues.
+
+Parmis les fonctionnalités supplémentaires que je voulais implémenter au départ, j'ai d'abord pensé a créer un marchand que le joueur pouvait consulter quand il le voulait. Il pourrait alors acheter un objet, ou vendre tout son inventaire pour augmenter sa solde d'or. Certains objets, plus puissant et plus cher, ne serait disponible que chez ce fameux marchand. Mais je n'ai pas trouvé le temps nécessaire pour développer cette feature.
+
+Pour générer des chiffres, objets ou ennemis aléatoires, j'ai utiliser une classe statique RandomGenerators permettant d'accéder aux méthodes de génération n'importe où dans le code.
+Je n'ai pas detecté de bug spéciaux dans le jeu pour le moment, les classes statiques comme GameData ou RandomGenerators sont fait selon le design pattern singleton, permettant a ces classes uniques et primoridales de rester unique dans le code.

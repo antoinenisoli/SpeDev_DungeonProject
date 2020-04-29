@@ -9,11 +9,9 @@ namespace DungeonProject
     class Item
     {
         string name;
-
         public string Name { get => name; set => name = value; }
 
         int value;
-
         public int Value { get => this.value; set => this.value = value; }
 
         public Item(string name, int value)
@@ -25,7 +23,7 @@ namespace DungeonProject
         public override string ToString()
         {
             return " | Item : " + name + " | Value : " + value + " | ";
-        }
+        }        
 
         public virtual void GiveTo(Character chara)
         {
@@ -34,8 +32,12 @@ namespace DungeonProject
 
         public virtual void Effect(Player player)
         {
-            Console.WriteLine("");
-            Console.WriteLine(player.Name + " use a " + Name + " !");
+            Console.WriteLine("\n" + player.Name + " use a " + Name + " !");
+        }
+
+        public virtual void Restore(Player player, string unitValue, string valueName)
+        {            
+            
         }
     }
 }

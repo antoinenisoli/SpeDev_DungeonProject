@@ -18,7 +18,7 @@ namespace DungeonProject
 
         }
 
-        public override void Effect(Player player, Ennemy target)
+        public override void Effect(Player player, Ennemy target) //reduce the ennemy's health by a half
         {
             base.Effect(player, target);
             Console.WriteLine(player.Name + " cast a terrible curse on his ennemy !");

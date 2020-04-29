@@ -17,10 +17,9 @@ namespace DungeonProject
         public override void Effect(Player player)
         {
             base.Effect(player);
-            Console.WriteLine("His strength is increased by " + Value + " points !");
-            Console.WriteLine("");
+            Console.WriteLine("His strength is increased by " + Value + " points !\n");
             Console.ReadKey();
-
+            player.Inventory.items.Remove(this);
             player.Strength += Value;
         }
     }

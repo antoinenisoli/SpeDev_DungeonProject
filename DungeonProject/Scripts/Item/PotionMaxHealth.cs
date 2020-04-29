@@ -20,7 +20,7 @@ namespace DungeonProject
             Console.WriteLine("His maximum Health points are increased by " + Value + " points !");
             Console.WriteLine("");
             Console.ReadKey();
-
+            player.Inventory.items.Remove(this);
             player.MaxHealth += Value;
         }
     }

@@ -10,17 +10,14 @@ namespace DungeonProject
     {
         public List<Item> items = new List<Item>();
         public List<Item> currentEquipment = new List<Item>();
-        Weapon currentSword = new Weapon(null, 0);
+        Weapon currentWeapon = new Weapon(null, 0);
         Armor currentArmor = new Armor(null, 0);
         int currentGold;
         Character chara;
 
         public Character Chara { get => chara; set => chara = value; }
-
-        public Weapon CurrentSword { get => currentSword; set => currentSword = value; }
-
+        public Weapon CurrentWeapon { get => currentWeapon; set => currentWeapon = value; }
         public Armor CurrentArmor { get => currentArmor; set => currentArmor = value; }
-
         public int CurrentGold { get => currentGold;
             set
             {
@@ -78,9 +75,9 @@ namespace DungeonProject
                     Console.WriteLine("*[Armor : None ]*");
                 }
 
-                if (CurrentSword != null && CurrentSword.Value > 0)
+                if (CurrentWeapon != null && CurrentWeapon.Value > 0)
                 {
-                    Console.WriteLine(CurrentSword.ToString());
+                    Console.WriteLine(CurrentWeapon.ToString());
                 }
                 else
                 {

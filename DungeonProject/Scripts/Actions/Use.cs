@@ -14,7 +14,6 @@ namespace DungeonProject
             {
                 Console.Clear();
                 Item pickedItem = Menu.PickElementFromList<Item>(player.Inventory.items, "Your inventory :");
-                player.Inventory.items.Remove(pickedItem);
                 pickedItem.Effect(player);
             }
             else

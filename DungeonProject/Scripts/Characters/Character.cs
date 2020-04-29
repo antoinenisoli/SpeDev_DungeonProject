@@ -16,7 +16,6 @@ namespace DungeonProject
         public bool InFight { get => inFight; set => inFight = value; }
         Inventory inventory;
         public Inventory Inventory { get => inventory; set => inventory = value; }
-
         public string Name
         {
             get
@@ -29,7 +28,6 @@ namespace DungeonProject
                 name = value;
             }
         }
-
         public int CurrentHealth
         {
             get
@@ -54,14 +52,12 @@ namespace DungeonProject
                 currentHealth = value;
             }
         }
-
         public int MaxHealth { get => maxHealth;
             set
             {
                 maxHealth = value;
             }
         }
-
         public int Strength { get => strength;
             set
             {
@@ -123,7 +119,7 @@ namespace DungeonProject
 
         public int ComputeDamages(Character target) //calculate the damage amount of the character's attack
         {
-            return Inventory.CurrentSword.Value + strength - target.Inventory.CurrentArmor.Value;
+            return Inventory.CurrentWeapon.Value + strength - target.Inventory.CurrentArmor.Value;
         }
 
         public void TakeDamages(int amount)

@@ -13,6 +13,15 @@ namespace DungeonProject
             return "Inspect the room";
         }
 
+        public void Contains(bool value, string msg)
+        {
+            if (value) //show the bed or the exit in the room
+            {
+                Console.WriteLine("There's a " + msg + " in this room...\n");
+                Console.ReadKey();
+            }
+        }
+
         public void PrintList<T>(string msg, string emptyMsg, List<T> list)
         {
             if (list.Count > 0) //show the elements in the room
@@ -41,28 +50,17 @@ namespace DungeonProject
                     ennemy.ShowStuff = !ennemy.ShowStuff;
                 }
             }
-
             Console.Clear();
-
-            if (inRoom.Bed) //show the bed in the room
-            {
-                Console.WriteLine("There's a bed hidden in this room...\n");
-                Console.ReadKey();
-            }
+            Contains(inRoom.ContainBed, "bed");
+            Contains(inRoom.ContainExit, "exit");
 
             ShowOrNot();
             PrintList("This room contains these ennemies :", "There is no ennemies here. ", inRoom.ennemiesInRoom);
             ShowOrNot();
-
-            PrintList("This room contains these items :", "There is no items here.", inRoom.itemsInRoom);
-            
+            PrintList("This room contains these items :", "There is no items here.", inRoom.itemsInRoom);            
             Console.WriteLine("\nThat's all !");
-            Console.ReadKey();
-            Console.WriteLine("End of inspection.");
             Console.ReadKey();
             Console.Clear();
         }
-
-        
     }
 }

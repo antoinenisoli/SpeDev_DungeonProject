@@ -12,7 +12,6 @@ namespace DungeonProject
         int goldValue;
         bool showStuff;
         public bool ShowStuff { get => showStuff; set => showStuff = value; }
-
         public int XpValue { get => xpValue;
             set
             {
@@ -24,7 +23,6 @@ namespace DungeonProject
                 xpValue = value;
             }
         }
-
         public int GoldValue { get => goldValue;
             set
             {

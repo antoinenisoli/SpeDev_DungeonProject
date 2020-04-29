@@ -15,13 +15,24 @@ namespace DungeonProject
         }
 
         public override void Effect(Player player)
-        {
-            base.Effect(player);
-            Console.WriteLine("It heals him by " + Value + " pv !");
-            Console.WriteLine("");
-            Console.ReadKey();
+        {            
+            Restore(player, "pv", "health");
+        }
 
-            player.CurrentHealth += Value;
+        public override void Restore(Player player, string unitValue, string valueName)
+        {
+            if (player.CurrentHealth < player.MaxHealth)
+            {
+                Console.WriteLine("It restores him " + Value + " " + unitValue + " !\n");
+                Console.ReadKey();
+                player.CurrentHealth += Value;
+                player.Inventory.items.Remove(this);
+            }
+            else
+            {
+                Console.WriteLine("Your " + valueName + " is already full !\n");
+                Console.ReadKey();
+            }
         }
     }
 }

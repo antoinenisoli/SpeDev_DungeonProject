@@ -21,14 +21,16 @@ namespace DungeonProject
         public override void Effect(Player player, Ennemy target)
         {
             base.Effect(player, target);
-            Console.WriteLine(player.Name + " shoot a incredibly ice beam on his target !");
+            Console.WriteLine(player.Name + " shoot a incredibly powerful ice beam on his target !");
             Console.ReadKey();
             
             if (target.Inventory.CurrentArmor.Value > 0)
             {
                 Console.WriteLine("\nIt instantly destroy his armor !");
                 Console.ReadKey();
-                target.Inventory.CurrentArmor.Value = 0;
+                Armor destroyedArmor = target.Inventory.CurrentArmor;
+                destroyedArmor.Value = 0;
+                target.Inventory.currentEquipment.Remove(destroyedArmor);
             }
             else
             {

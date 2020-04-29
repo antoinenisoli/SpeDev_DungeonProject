@@ -17,8 +17,7 @@ namespace DungeonProject
         public override void Effect(Player player)
         {
             base.Effect(player);
-            Console.WriteLine(player.Name + " won " + Value + " coins !");
-            Console.WriteLine("");
+            Console.WriteLine(player.Name + " won " + Value + " coins !\n");
             Console.ReadKey();
             
             player.Inventory.CurrentGold += Value;

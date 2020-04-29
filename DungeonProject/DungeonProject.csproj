@@ -50,6 +50,7 @@
     <Compile Include="Scripts\Actions\FightChoices\Skills\Curse.cs" />
     <Compile Include="Scripts\Actions\FightChoices\Skills\IceRay.cs" />
     <Compile Include="Scripts\Actions\FightChoices\Skills\Lightning.cs" />
+    <Compile Include="Scripts\Actions\Leave.cs" />
     <Compile Include="Scripts\Item\Armor.cs" />
     <Compile Include="Scripts\Characters\Character.cs" />
     <Compile Include="Scripts\Item\CoinsBag.cs" />

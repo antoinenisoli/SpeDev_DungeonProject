@@ -33,7 +33,10 @@ namespace DungeonProject
                     Console.Clear();
                     Console.WriteLine("=============> IN FIGHT <============\n");
                     player.ShowCharacter();
+                    player.ShowInventory();
+
                     pickedEnnemy.ShowCharacter();
+                    pickedEnnemy.ShowInventory();
                     FightChoice pickedChoice = Menu.PickElementFromList<FightChoice>(GameData.FightChoicesList, "\nWhat do you do ?");
                     pickedChoice.Choice(player, pickedEnnemy, inRoom);
                 }
@@ -45,8 +48,8 @@ namespace DungeonProject
 
                     Console.WriteLine(pickedEnnemy.Name + " has dropped his inventory on the floor of the room !");
                     pickedEnnemy.Inventory.ShowItems();
-                    inRoom.itemsInRoom.AddRange(pickedEnnemy.Inventory.items);
-                    inRoom.ennemiesInRoom.Remove(pickedEnnemy);
+                    inRoom.itemsInRoom.AddRange(pickedEnnemy.Inventory.items); //his inventory is added to the room's stuff
+                    inRoom.ennemiesInRoom.Remove(pickedEnnemy); //the ennemy is destroyed and removed from the room
                     Console.ReadKey();
                 }
             }

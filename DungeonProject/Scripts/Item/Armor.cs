@@ -14,24 +14,30 @@ namespace DungeonProject
             this.Value = value;
         }
 
+        public Armor InstantiateArmor() //create a copy of a precise item
+        {
+            return new Armor(Name, Value);
+        }
+
         public override string ToString()
         {
-            return " [Armor : " + base.ToString();
+            return " [ Armor : " + base.ToString();
         }
 
         public override void GiveTo(Character chara)
         {
-            Inventory inventory = chara.Inventory;
+            Inventory inventory = chara.Inventory;            
+            Armor newArmor = InstantiateArmor();
 
             if (inventory.CurrentArmor.Value == 0)
             {
-                inventory.currentEquipment.Add(this);
-                inventory.CurrentArmor = this;
+                inventory.currentEquipment.Add(newArmor);
+                inventory.CurrentArmor = newArmor;
             }
             else
             {
-                inventory.ReplaceStuff(this, inventory.CurrentArmor);
-                inventory.CurrentArmor = this;
+                inventory.ReplaceStuff(newArmor, inventory.CurrentArmor);
+                inventory.CurrentArmor = newArmor;
             }
         }
     }
